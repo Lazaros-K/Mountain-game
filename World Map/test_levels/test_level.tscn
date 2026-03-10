@@ -1,29 +1,23 @@
-[gd_scene format=3 uid="uid://bjrt5fniapph4"]
+[gd_scene format=4 uid="uid://bjrt5fniapph4"]
 
 [ext_resource type="Texture2D" uid="uid://bjjqc77snl0yo" path="res://World Map/test_levels/assets/grey_bg.png" id="1_12ryh"]
-[ext_resource type="PackedScene" uid="uid://def4xvrelys5s" path="res://common/test_objects/static_body.tscn" id="1_j8ljk"]
 [ext_resource type="PackedScene" uid="uid://26ds46wnt2e2" path="res://characters/test_character/charcter.tscn" id="3_34q8f"]
+[ext_resource type="TileSet" uid="uid://c16hhyu7xxg3r" path="res://World Map/test_levels/tile_sets/new_tile_set.tres" id="3_y3n76"]
 
 [node name="test_level" type="Node2D" unique_id=392777027]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1342171354]
 texture = ExtResource("1_12ryh")
 
-[node name="StaticBody2D" parent="." unique_id=156685732 instance=ExtResource("1_j8ljk")]
-position = Vector2(143, -13)
-scale = Vector2(4, 4)
-
-[node name="StaticBody2D2" parent="." unique_id=2075380025 instance=ExtResource("1_j8ljk")]
-position = Vector2(0, 83)
-scale = Vector2(32, 4)
-
 [node name="CharacterBody2D" parent="." unique_id=109764833 instance=ExtResource("3_34q8f")]
 jump_velocity = -300.0
 fly = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=874370524]
-zoom = Vector2(4.5, 4.5)
+zoom = Vector2(2.5, 2.5)
 
-[node name="StaticBody2D3" parent="." unique_id=181078510 instance=ExtResource("1_j8ljk")]
-position = Vector2(-58, 11)
-scale = Vector2(2, 2)
+[node name="TileMap" type="Node2D" parent="." unique_id=1185303586]
+
+[node name="collision_layer" type="TileMapLayer" parent="TileMap" unique_id=1270411236]
+tile_map_data = PackedByteArray("AAAEAAYAAAACAAIAAAAEAAUAAAACAAEAAAAEAAQAAAACAAEAAAAEAAMAAAACAAAAAAADAAYAAAABAAIAAAADAAUAAAABAAEAAAADAAQAAAABAAEAAAADAAMAAAABAAAAAAACAAYAAAABAAIAAAACAAUAAAABAAEAAAACAAQAAAABAAEAAAACAAMAAAABAAAAAAABAAYAAAABAAIAAAABAAUAAAABAAEAAAABAAQAAAABAAEAAAABAAMAAAABAAAAAAAAAAYAAAABAAIAAAAAAAUAAAABAAEAAAAAAAQAAAABAAEAAAAAAAMAAAABAAAAAAD//wYAAAABAAIAAAD//wUAAAABAAEAAAD//wQAAAABAAEAAAD//wMAAAABAAAAAAD+/wYAAAABAAIAAAD+/wUAAAABAAEAAAD+/wQAAAABAAEAAAD+/wMAAAABAAAAAAD9/wYAAAABAAIAAAD9/wUAAAABAAEAAAD9/wQAAAABAAEAAAD9/wMAAAABAAAAAAD8/wYAAAAAAAIAAAD8/wUAAAAAAAEAAAD8/wQAAAAAAAEAAAD8/wMAAAAAAAAAAAANAAMAAAACAAIAAAANAAIAAAACAAEAAAANAAEAAAACAAAAAAAMAAMAAAABAAIAAAAMAAIAAAABAAEAAAAMAAEAAAABAAAAAAALAAMAAAABAAIAAAALAAIAAAABAAEAAAALAAEAAAABAAAAAAAKAAMAAAABAAIAAAAKAAIAAAABAAEAAAAKAAEAAAABAAAAAAAJAAMAAAAAAAIAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAAAAAD6/wEAAAAFAAAAAAD5/wEAAAADAAAAAAD4/wAAAAAFAAAAAAD3/wAAAAAEAAAAAAD2/wAAAAAEAAAAAAD1/wAAAAADAAAAAAD0////AAAFAAAAAADz////AAADAAAAAAA=")
+tile_set = ExtResource("3_y3n76")
