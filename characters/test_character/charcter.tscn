@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b87xaaal85rfc" path="res://characters/test_character/charcter.gd" id="1_qm75l"]
 [ext_resource type="Texture2D" uid="uid://da5w4otyv637j" path="res://characters/test_character/assets/green_text.png" id="1_xhgfu"]
+[ext_resource type="Script" uid="uid://c3a5brb6y7m16" path="res://characters/test_character/health.gd" id="3_i1lae"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qm75l"]
 size = Vector2(24, 24)
@@ -16,3 +17,6 @@ texture = ExtResource("1_xhgfu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2052641260]
 shape = SubResource("RectangleShape2D_qm75l")
+
+[node name="health" type="Node2D" parent="." unique_id=1683476017]
+script = ExtResource("3_i1lae")

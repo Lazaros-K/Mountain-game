@@ -16,6 +16,14 @@ fly = false
 [node name="Camera2D" type="Camera2D" parent="." unique_id=874370524]
 zoom = Vector2(2.5, 2.5)
 
+[node name="health_text" type="Label" parent="Camera2D" unique_id=2103141600]
+offset_left = -206.0
+offset_top = -110.0
+offset_right = -154.0
+offset_bottom = -87.0
+text = "100 hp"
+horizontal_alignment = 1
+
 [node name="TileMap" type="Node2D" parent="." unique_id=1185303586]
 
 [node name="collision_layer" type="TileMapLayer" parent="TileMap" unique_id=1270411236]
