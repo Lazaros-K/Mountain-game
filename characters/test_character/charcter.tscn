@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qm75l"]
 size = Vector2(24, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1lae"]
+size = Vector2(26, 26)
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=109764833]
 script = ExtResource("1_qm75l")
 fly = true
@@ -20,3 +23,12 @@ shape = SubResource("RectangleShape2D_qm75l")
 
 [node name="health" type="Node2D" parent="." unique_id=1683476017]
 script = ExtResource("3_i1lae")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=567940799]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2103050030]
+shape = SubResource("RectangleShape2D_i1lae")
+debug_color = Color(0.50140226, 0.48697942, 0, 0.41960785)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

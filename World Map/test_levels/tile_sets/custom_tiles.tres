@@ -1,0 +1,30 @@
+[gd_resource type="TileSet" format=3 uid="uid://ei2by2pu1g6m"]
+
+[ext_resource type="Texture2D" uid="uid://dpb0n723gnn83" path="res://World Map/test_levels/tile_sets/Damage tiles.png" id="1_16j04"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ehb8k"]
+texture = ExtResource("1_16j04")
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+7:1/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+4:3/0 = 0
+6:3/0 = 0
+8:3/0 = 0
+8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -4, 8, -4, 8, 8, -8, 8)
+1:5/0 = 0
+2:5/0 = 0
+4:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 9
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_ehb8k")
