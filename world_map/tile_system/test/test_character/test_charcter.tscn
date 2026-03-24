@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://26ds46wnt2e2"]
+
+[ext_resource type="Texture2D" uid="uid://da5w4otyv637j" path="res://characters/test_character/assets/green_text.png" id="1_xhgfu"]
+[ext_resource type="Script" uid="uid://c3a5brb6y7m16" path="res://world_map/tile_system/test/test_character/health.gd" id="3_i1lae"]
+[ext_resource type="Script" path="res://World Map/tile_system/tile_layers/TileCollisionArea.gd" id="3_pux52"]
+
+[sub_resource type="GDScript" id="GDScript_6skrt"]
+script/source = "extends CharacterBody2D
+
+
+@export var speed: float = 220.0
+@export var jump_velocity: float = -250.0
+@export var fly: bool = false
+
+func _physics_process(delta: float) -> void :
+
+	if fly:
+		movement_fly()
+	else:
+		movement_walk(delta)
+	
+	var direction: float = Input.get_axis(\"left\", \"right\")
+	if direction:
+		velocity.x = direction * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+	
+	move_and_slide()
+
+func movement_fly() -> void:
+	
+	var direction: float = Input.get_axis(\"up\", \"down\")
+	if direction:
+		velocity.y = direction * speed
+	else:
+		velocity.y = move_toward(velocity.y, 0, speed)
+	
+
+func movement_walk(delta: float) -> void:
+	
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		velocity.y = jump_velocity
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qm75l"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpu14"]
+size = Vector2(26, 26)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=109764833]
+script = SubResource("GDScript_6skrt")
+fly = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=269984637]
+scale = Vector2(2, 2)
+texture = ExtResource("1_xhgfu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2052641260]
+shape = SubResource("RectangleShape2D_qm75l")
+
+[node name="health" type="Node2D" parent="." unique_id=1683476017]
+script = ExtResource("3_i1lae")
+
+[node name="TileCollisionAreas" type="Area2D" parent="." unique_id=1664736801]
+script = ExtResource("3_pux52")
+metadata/_custom_type_script = "uid://d3uurast3y0fa"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileCollisionAreas" unique_id=494426076]
+shape = SubResource("RectangleShape2D_rpu14")

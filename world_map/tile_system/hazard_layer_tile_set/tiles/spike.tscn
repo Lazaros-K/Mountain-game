@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://hyofwk3u5b44"]
+
+[ext_resource type="Script" uid="uid://cbogkxk34jt8d" path="res://common/hitbox_hurtbox_system/hitboxes/StaticHitBox.gd" id="2_op2hk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xeutw"]
+size = Vector2(12, 12)
+
+[node name="Spike" type="Node2D" unique_id=2127669445]
+
+[node name="StaticHitBox" type="Area2D" parent="." unique_id=472310077]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_op2hk")
+hazard_name = "Spike!"
+damage = 1
+metadata/_custom_type_script = "uid://cbogkxk34jt8d"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticHitBox" unique_id=1901782256]
+shape = SubResource("RectangleShape2D_xeutw")

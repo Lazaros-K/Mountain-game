@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpb0n723gnn83"
-path="res://.godot/imported/Damage tiles.png-f84b9f6f3be6636793a42f1a253c362a.ctex"
+uid="uid://bjjqc77snl0yo"
+path="res://.godot/imported/grey_bg.png-1cdced6066bb5a7c08faa3ffef09d6e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World Map/test_levels/tile_sets/Damage tiles.png"
-dest_files=["res://.godot/imported/Damage tiles.png-f84b9f6f3be6636793a42f1a253c362a.ctex"]
+source_file="res://world_map/assets/grey_bg.png"
+dest_files=["res://.godot/imported/grey_bg.png-1cdced6066bb5a7c08faa3ffef09d6e6.ctex"]
 
 [params]
 
