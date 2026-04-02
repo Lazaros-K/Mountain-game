@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpb0n723gnn83"
-path="res://.godot/imported/Damage tiles.png-a11b66e63b11a9c84368e0c818d531c4.ctex"
+uid="uid://3at2wq3qp10c"
+path="res://.godot/imported/dual-tileset-spikes.png-39a59abd5b95548ba20b375a16e2121e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world_map/tile_system/solid_layer_tile_set/assets/Damage tiles.png"
-dest_files=["res://.godot/imported/Damage tiles.png-a11b66e63b11a9c84368e0c818d531c4.ctex"]
+source_file="res://world_map/tile_system/resource_tile_set/assets/dual-tileset-spikes.png"
+dest_files=["res://.godot/imported/dual-tileset-spikes.png-39a59abd5b95548ba20b375a16e2121e.ctex"]
 
 [params]
 

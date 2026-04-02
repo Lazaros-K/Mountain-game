@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh6js74dd2luq"
-path="res://.godot/imported/nature-paltformer-tileset-16x16.png-7bd135796446b35613b86b5a9933c238.ctex"
+uid="uid://coqw6e4i1f5ul"
+path="res://.godot/imported/operational-tileset-textures.png-48322d77bcae157bce7e7f9bd69b05b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world_map/tile_system/solid_layer_tile_set/assets/nature-paltformer-tileset-16x16.png"
-dest_files=["res://.godot/imported/nature-paltformer-tileset-16x16.png-7bd135796446b35613b86b5a9933c238.ctex"]
+source_file="res://world_map/tile_system/operational_tiles/editor_assets/operational-tileset-textures.png"
+dest_files=["res://.godot/imported/operational-tileset-textures.png-48322d77bcae157bce7e7f9bd69b05b3.ctex"]
 
 [params]
 
