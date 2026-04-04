@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bnnt7nebeqsyg"]
+
+[ext_resource type="Texture2D" uid="uid://bjjqc77snl0yo" path="res://world_map/assets/grey_bg.png" id="1_d2qkx"]
+[ext_resource type="PackedScene" uid="uid://l8segejsovjy" path="res://characters/test_character/charcter.tscn" id="2_uqnio"]
+[ext_resource type="PackedScene" uid="uid://c85j1xjfj4wlb" path="res://world_map/map_fragments/map_fragment_template.tscn" id="3_aoyr2"]
+
+[node name="test_level" type="Node2D" unique_id=392777027]
+
+[node name="background" type="Sprite2D" parent="." unique_id=1342171354]
+texture = ExtResource("1_d2qkx")
+
+[node name="test_character" parent="." unique_id=109764833 node_paths=PackedStringArray("current_map_fragment") instance=ExtResource("2_uqnio")]
+position = Vector2(-20, 36)
+current_map_fragment = NodePath("../TileMap")
+fly = true
+
+[node name="Camera2D" type="Camera2D" parent="test_character" unique_id=874370524]
+zoom = Vector2(2.5, 2.5)
+
+[node name="TileMap" parent="." unique_id=578587331 instance=ExtResource("3_aoyr2")]
