@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dl2vjjdao3001"]
+
+[ext_resource type="Texture2D" uid="uid://bjjqc77snl0yo" path="res://world_map/assets/grey_bg.png" id="1_2snsl"]
+[ext_resource type="PackedScene" uid="uid://l8segejsovjy" path="res://characters/test_character/charcter.tscn" id="2_g31v2"]
+[ext_resource type="PackedScene" uid="uid://c85j1xjfj4wlb" path="res://world_map/map_fragments/map_fragment_template.tscn" id="3_dne5a"]
+[ext_resource type="PackedScene" uid="uid://1bo5uyadwikm" path="res://user_interface/pause_menu/pause_menu.tscn" id="4_l4uq5"]
+
+[node name="test_level" type="Node2D" unique_id=392777027]
+
+[node name="background" type="Sprite2D" parent="." unique_id=1342171354]
+texture = ExtResource("1_2snsl")
+
+[node name="test_character" parent="." unique_id=109764833 node_paths=PackedStringArray("current_map_fragment") instance=ExtResource("2_g31v2")]
+position = Vector2(-20, 36)
+current_map_fragment = NodePath("../TileMap")
+fly = true
+
+[node name="Camera2D" type="Camera2D" parent="test_character" unique_id=874370524]
+zoom = Vector2(2.5, 2.5)
+
+[node name="TileMap" parent="." unique_id=578587331 instance=ExtResource("3_dne5a")]
+
+[node name="pause_menu" parent="." unique_id=273633992 instance=ExtResource("4_l4uq5")]
+visible = false

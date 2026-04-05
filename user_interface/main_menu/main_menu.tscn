@@ -1,0 +1,219 @@
+[gd_scene format=3 uid="uid://bmca0xk372xs7"]
+
+[ext_resource type="FontFile" uid="uid://do6g4882cwgd6" path="res://user_interface/assets/Jersey10-Regular.ttf" id="1_1aipp"]
+[ext_resource type="Script" uid="uid://cqax750jmv2p4" path="res://user_interface/main_menu/main_menu.gd" id="1_xqlja"]
+[ext_resource type="Script" uid="uid://c4f5uxmt0hpj8" path="res://user_interface/pause_menu/screen_mode_b.gd" id="3_ejyv4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqlja"]
+bg_color = Color(0.44640002, 0.66984004, 0.72, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypthw"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1aipp"]
+bg_color = Color(0.36207703, 0.36207703, 0.362077, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejyv4"]
+bg_color = Color(0.5802276, 0.5802278, 0.58022755, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1aipp"]
+
+[node name="MainMenu" type="Control" unique_id=576726126]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xqlja")
+starting_scene = "res://user_interface/test_scene/test_level.tscn"
+
+[node name="BCKGRND" type="Panel" parent="." unique_id=1495096156]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xqlja")
+
+[node name="MenuButtons" type="VBoxContainer" parent="." unique_id=699412066]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -135.75
+offset_right = 219.0
+offset_bottom = 135.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+metadata/_edit_use_anchors_ = true
+
+[node name="StartButton" type="Button" parent="MenuButtons" unique_id=1173804730]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_1aipp")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_ypthw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1aipp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ejyv4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1aipp")
+text = "Start game"
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionsButton" type="Button" parent="MenuButtons" unique_id=817905005]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_1aipp")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_ypthw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1aipp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ejyv4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1aipp")
+text = "Options"
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitButton" type="Button" parent="MenuButtons" unique_id=917300154]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_1aipp")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_ypthw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1aipp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ejyv4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1aipp")
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=1951684006]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.0
+offset_top = -273.0
+offset_right = 137.0
+offset_bottom = -167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("1_1aipp")
+theme_override_font_sizes/font_size = 100
+text = "Mountain game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="Panel" parent="." unique_id=734638412]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -301.0
+offset_top = -155.0
+offset_right = 301.0
+offset_bottom = 231.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Options" unique_id=1705606376]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -189.0
+offset_right = 298.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_1aipp")
+theme_override_font_sizes/font_size = 60
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="Options" unique_id=928509805]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -107.0
+offset_right = 110.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_1aipp")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_ypthw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1aipp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ejyv4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1aipp")
+text = "Back"
+
+[node name="ScreenModeB" type="CheckButton" parent="Options" unique_id=785841799]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 128.0
+offset_right = 525.0
+offset_bottom = 182.0
+theme_override_fonts/font = ExtResource("1_1aipp")
+theme_override_font_sizes/font_size = 50
+text = "Fullscreen"
+script = ExtResource("3_ejyv4")
+
+[connection signal="pressed" from="MenuButtons/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MenuButtons/OptionsButton" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MenuButtons/ExitButton" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Options/BackButton" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="Options/ScreenModeB" to="Options/ScreenModeB" method="_on_toggled"]
