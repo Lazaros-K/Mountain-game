@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bjjqc77snl0yo" path="res://world_map/assets/grey_bg.png" id="1_et3r8"]
 [ext_resource type="PackedScene" uid="uid://l8segejsovjy" path="res://characters/test_character/charcter.tscn" id="2_wfp8v"]
 [ext_resource type="PackedScene" uid="uid://c85j1xjfj4wlb" path="res://world_map/map_fragments/map_fragment_template.tscn" id="3_0bq3w"]
-[ext_resource type="PackedScene" uid="uid://1bo5uyadwikm" path="res://user_interface/pause_menu.tscn" id="4_gcskw"]
 
 [node name="test_level" type="Node2D" unique_id=392777027]
 
@@ -19,5 +18,3 @@ fly = true
 zoom = Vector2(2.5, 2.5)
 
 [node name="TileMap" parent="." unique_id=578587331 instance=ExtResource("3_0bq3w")]
-
-[node name="pause_menu" parent="." unique_id=273633992 instance=ExtResource("4_gcskw")]
