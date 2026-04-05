@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://d0o4v184kk7ph"]
+
+[ext_resource type="Texture2D" uid="uid://bmetjw27se3vl" path="res://user_interface/assets/PHeart.png" id="1_r6e11"]
+
+[node name="HeartBar" type="CanvasLayer" unique_id=489534523]
+
+[node name="Control" type="Control" parent="." unique_id=1038778343]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=2080270205]
+layout_mode = 0
+offset_right = 167.0
+offset_bottom = 54.0
+
+[node name="Heart1" type="TextureRect" parent="Control/HBoxContainer" unique_id=632202438]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_r6e11")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Heart2" type="TextureRect" parent="Control/HBoxContainer" unique_id=594058820]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_r6e11")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Heart3" type="TextureRect" parent="Control/HBoxContainer" unique_id=885704334]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_r6e11")
+expand_mode = 1
+stretch_mode = 4
