@@ -10,8 +10,13 @@ func _ready() -> void:
 
 ## Returns the SolidTileData of the tile in actor_position
 func get_tile_data(actor_position: Vector2) -> SolidTileData :
-	var tile_data: TileData = solid_layer.get_cell_tile_data(solid_layer.local_to_map(actor_position))
-	if not tile_data :
+	
+	var local_position: Vector2 = solid_layer.to_local(actor_position)
+	var map_position: Vector2i = solid_layer.local_to_map(local_position)
+	var tile_data: TileData = solid_layer.get_cell_tile_data(map_position)
+	
+	if not tile_data:
 		return null
-	return SolidTileData.new(tile_data);
+		
+	return SolidTileData.new(tile_data)
 	

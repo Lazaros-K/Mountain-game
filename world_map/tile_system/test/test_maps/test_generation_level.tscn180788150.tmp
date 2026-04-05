@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://d4nhu0lgmqh14"]
+
+[ext_resource type="Texture2D" uid="uid://bjjqc77snl0yo" path="res://world_map/assets/grey_bg.png" id="1_g4psx"]
+[ext_resource type="PackedScene" uid="uid://p4uoycqrks1u" path="res://characters/test_character_2/charcter.tscn" id="2_r8pao"]
+[ext_resource type="Script" uid="uid://dwkfuqcdddpuk" path="res://world_map/level_generation/scripts/level_manager.gd" id="4_o87pg"]
+[ext_resource type="PackedScene" uid="uid://rfa8rir3quar" path="res://world_map/map_fragments/Right_1.tscn" id="5_ibqei"]
+[ext_resource type="PackedScene" uid="uid://knhdu37ovocq" path="res://world_map/map_fragments/Up_1.tscn" id="5_r8pao"]
+[ext_resource type="PackedScene" uid="uid://baj210573tmsh" path="res://world_map/map_fragments/Up_2.tscn" id="6_r8pao"]
+
+[node name="test_generation_level" type="Node2D" unique_id=392777027]
+
+[node name="background" type="Sprite2D" parent="." unique_id=1342171354]
+texture = ExtResource("1_g4psx")
+
+[node name="test_character" parent="." unique_id=109764833 instance=ExtResource("2_r8pao")]
+position = Vector2(-131, -27)
+
+[node name="Camera2D" type="Camera2D" parent="test_character" unique_id=455864505]
+zoom = Vector2(2.5, 2.5)
+
+[node name="RoomsContainer" type="Node2D" parent="." unique_id=121938335]
+script = ExtResource("4_o87pg")
+right_rooms = Array[PackedScene]([ExtResource("5_ibqei")])
+up_rooms = Array[PackedScene]([ExtResource("5_r8pao"), ExtResource("6_r8pao")])
+
+[node name="TileMap" parent="." unique_id=985964851 instance=ExtResource("5_ibqei")]
+position = Vector2(-134, -48)
