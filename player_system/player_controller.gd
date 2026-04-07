@@ -26,8 +26,17 @@ func _read_input() -> void:
 	_cmd.move_direction = 0.0
 	_cmd.jump_pressed = false
 	_cmd.air_horizontal = 0.0
-	# _cmd.air_vertical = 0.0
+	_cmd.air_vertical = 0.0
+	_cmd.press_away_from_wall = false
+	
 	_cmd.move_direction = Input.get_axis(ACTION_LEFT,ACTION_RIGHT)
 	_cmd.jump_pressed = Input.is_action_just_pressed("jump")
 	_cmd.air_horizontal = _cmd.move_direction
 	_cmd.air_vertical = Input.get_axis(ACTION_AIR_UP,ACTION_AIR_DOWN)
+	
+	var wall_side := player._wall_side
+	if wall_side != 0:
+		_cmd.press_away_from_wall=(
+			(wall_side == -1 and _cmd.move_direction > 0.0) or 
+			(wall_side == +1 and _cmd.move_direction < 0.0)
+		)

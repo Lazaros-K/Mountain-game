@@ -17,22 +17,64 @@ const GRAVITY: float = 900.0
 
 #player movement control in air
 const AIR_CONTROL_FORCE: float = 120.0
-
 #maximum speed the air control nudge can add in any direction.
 #prevents air control from completely overriding the initial jump arc
 const AIR_CONTROL_MAX_CONTRIBUTION: float = 80.0
-
+const WALL_JUMP_UP_VELOCITY: float = 480.0#velocity when fully gripped
+const WALL_JUMP_SIDE_VELOCITY: float = 400.0
 var _on_floor: bool = false
+var _wall_side: int = 0
 
+@onready var grip_handler: WallGripHandler = $WallGripHandler
 #cmd is a filled playercommand describing what the player wants
+func _ready() -> void:
+	grip_handler.gripped.connect(_on_gripped)
+	grip_handler.grip_lost.connect(_on_grip_lost)
+	grip_handler.grip_state_changed.connect(_on_grip_state_changed)
+
+func _apply_grip_damping() -> void:
+	var dt := get_physics_process_delta_time()
+	var damping := grip_handler.get_velocity_damping()
+	velocity.x = move_toward(velocity.x, 0.0, damping * dt)
+	velocity.y = move_toward(velocity.y, 0.0, damping * dt)
+
 func apply_command(cmd: PlayerCommand) ->void:
-	print("apply_command: on_floor=", is_on_floor(), " vel=", velocity)
+	#print("apply_command: on_floor=", is_on_floor(), " vel=", velocity)
 	_on_floor = is_on_floor()
+	_update_wall_side()
+	
+	var grip_state:= grip_handler.state
+	
+	match grip_state:
+		WallGripHandler.GripState.NONE:
+			if _on_floor:
+				_process_ground(cmd)
+			else:
+				_process_air(cmd)
+			velocity.y += GRAVITY*get_physics_process_delta_time()
+		WallGripHandler.GripState.GRIPPED:
+			_apply_grip_damping()
+			if cmd.jump_pressed:
+				_wall_jump_up()
+			if cmd.press_away_from_wall:
+				grip_handler.loosen_grip()
+		WallGripHandler.GripState.LOOSENED:
+			_apply_grip_damping()
+			if cmd.jump_pressed:
+				_wall_jump_side()
+			elif cmd.air_vertical < 0.0:
+				pass
+		WallGripHandler.GripState.SLIDING:
+			velocity.y +=GRAVITY*grip_handler.get_gravity_scale()\
+											*get_physics_process_delta_time()
 	if _on_floor:
 		_process_ground(cmd)
 	else:
 		_process_air(cmd)
 	velocity.y+= GRAVITY * get_physics_process_delta_time()
+	if not _on_floor and is_on_wall() and grip_state == WallGripHandler.GripState.NONE:
+		var surface_grip: float = _get_wall_surface_grip()
+		grip_handler.try_grip(_wall_side, surface_grip)
 	move_and_slide()
 
 func _process_ground(cmd: PlayerCommand) -> void:
@@ -56,23 +98,39 @@ func _start_jump() -> void:
 	velocity.y=-(BASE_JUMP_VELOCITY+speed_bonus)
 
 func _process_air(cmd :PlayerCommand)->void:
-	var dt: float = get_physics_process_delta_time()
-	#apply a small horizontal nudge in the air control direction
-	#clamp prevents the air-control contribution from exceeding its cap
-	#so the initial jump arc stays dominant
-	if cmd.air_horizontal !=0.0:
-		var nudge: float = cmd.air_horizontal*AIR_CONTROL_FORCE*dt
-		velocity.x= clamp(
-			velocity.x + nudge,
-			-MAX_GROUND_SPEED-AIR_CONTROL_MAX_CONTRIBUTION,
-			MAX_GROUND_SPEED+AIR_CONTROL_MAX_CONTRIBUTION
-		)
-	
-	#if cmd.air_vertical != 0.0:
-		#var v_nudge: float = cmd.air_vertical*AIR_CONTROL_FORCE*dt
-		#velocity.y+=v_nudge
-func _ready() -> void:
-	print("Player node READY")
+	var dt := get_physics_process_delta_time()
+	if cmd.air_horizontal != 0.0:
+		var nudge := cmd.air_horizontal*AIR_CONTROL_FORCE*dt
+		velocity.x = clamp(velocity.x+nudge,-MAX_GROUND_SPEED-AIR_CONTROL_MAX_CONTRIBUTION,MAX_GROUND_SPEED+AIR_CONTROL_MAX_CONTRIBUTION)
 
 func _physics_process(delta: float) -> void:
 	print("Player _physics_process running")
+
+func _update_wall_side() -> void:
+	if is_on_wall(): 
+		var normal := get_wall_normal()
+		_wall_side = -sign(normal.x) as int
+	else:
+		_wall_side = 0
+
+func _get_wall_surface_grip() -> float:
+	return 100.0
+
+func _wall_jump_up() -> void:
+	velocity.x = 0.0
+	velocity.y = -WALL_JUMP_UP_VELOCITY
+	grip_handler.release_on_jump()
+
+func _wall_jump_side() -> void:
+	velocity.x = -grip_handler.current_wall.wall_side*WALL_JUMP_SIDE_VELOCITY
+	velocity.y = 0.0
+	grip_handler.release_on_jump()
+
+func _on_gripped(data: WallData) -> void:
+	velocity = Vector2.ZERO
+
+func _on_grip_lost() -> void:
+	pass
+
+func _on_grip_state_changed(new_state: WallGripHandler.GripState) -> void:
+	pass

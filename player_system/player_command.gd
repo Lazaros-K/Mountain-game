@@ -11,3 +11,6 @@ var jump_pressed: bool = false
 #same as move but less impact 
 var air_horizontal: float = 0.0
 var air_vertical: float = 0.0
+
+#true when  player presses opposite to the wall hes gripping
+var press_away_from_wall: bool = false
