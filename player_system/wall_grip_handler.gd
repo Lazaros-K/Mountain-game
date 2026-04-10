@@ -1,10 +1,9 @@
 #wall grip logic--same logic as controller/player 
 class_name WallGripHandler
 extends Node
+
 signal gripped(data: WallData)
-
 signal grip_state_changed(new_state: GripState)
-
 signal grip_lost()
 
 enum GripState{
@@ -77,17 +76,10 @@ func loosen_grip() -> void:
 	)
 	t = clamp(t,0.0,1.0)
 	_hold_timer = lerp(MIN_HOLD_TIME, MAX_HOLD_TIME, t)
+	emit_signal("grip_state_changed", GripState.LOOSENED)
 
-func release_on_jump() -> float:
-	match state:
-		GripState.GRIPPED:
-			return 0.0
-		GripState.LOOSENED:
-			return 0.0
-		GripState.SLIDING:
-			return SLIDE_GRAVIRY_SCALE
-		_:
-			return 1.0
+func release_on_jump() -> void:
+	_release_grip()
 
 func get_velocity_damping() ->float:
 	if state == GripState.GRIPPED or state == GripState.LOOSENED:
@@ -105,3 +97,4 @@ func _release_grip() -> void:
 	current_wall = null
 	_hold_timer = 0.0
 	emit_signal("grip_lost")
+	emit_signal("grip_state_changed", GripState.NONE)
