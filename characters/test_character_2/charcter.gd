@@ -1,13 +1,17 @@
 extends CharacterBody2D
 
-@onready var grab_point: MapPoint = $grab_point
-@onready var feet_point: MapPoint = $feet_point
+signal map_fragment_changed(new_index: int)
+
+@onready var grab_point: MapDetectionPoint = $grab_point
+@onready var feet_point: MapDetectionPoint = $feet_point
 
 # when more the one map fragmetns will be available, this should be updated every frame
 @export var current_map_fragment: TileMapManager
 @export var speed: float = 220.0
 @export var jump_velocity: float = -250.0
 @export var fly: bool = false
+
+var current_fragment_index: int = -1
 
 func _physics_process(delta: float) -> void :
 	
@@ -28,6 +32,8 @@ func _physics_process(delta: float) -> void :
 
 func get_on_floor_data() -> void :
 	current_map_fragment = feet_point.get_data()
+	if current_map_fragment:
+		check_for_fragment_change(current_map_fragment.fragment_index)
 	var tile_data: SolidTileData = current_map_fragment.get_tile_data(feet_point.global_position)
 	if not tile_data :
 		return
@@ -35,6 +41,8 @@ func get_on_floor_data() -> void :
 
 func get_on_wall_data() -> void :
 	current_map_fragment = grab_point.get_data()
+	if current_map_fragment:
+		check_for_fragment_change(current_map_fragment.fragment_index)
 	var tile_data: SolidTileData = current_map_fragment.get_tile_data(feet_point.global_position)
 	if not tile_data :
 		return
@@ -74,6 +82,12 @@ func movement_walk(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 
+func check_for_fragment_change(new_index: int) -> void:
+	if new_index != current_fragment_index:
+		current_fragment_index = new_index
+		map_fragment_changed.emit(current_fragment_index)
+
 # Mock function made for testing
 func receive_hit_payload(payload: HitPayload) -> void :
 	payload.info();
+	

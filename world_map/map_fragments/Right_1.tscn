@@ -4,12 +4,11 @@
 [ext_resource type="TileSet" uid="uid://c16hhyu7xxg3r" path="res://world_map/tile_system/solid_layer_tile_set/solid_tile_set.tres" id="3_il6vh"]
 [ext_resource type="TileSet" uid="uid://bdcjvmyym5quv" path="res://world_map/tile_system/hazard_layer_tile_set/hazard_tile_set.tres" id="4_5ajrr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cw2q"]
-size = Vector2(254, 123)
-
-[node name="TileMap" type="Node2D" unique_id=985964851 node_paths=PackedStringArray("solid_layer")]
+[node name="TileMap" type="Node2D" unique_id=985964851 node_paths=PackedStringArray("solid_layer", "entrance_marker", "exit_marker")]
 script = ExtResource("1_appen")
 solid_layer = NodePath("solid_layer")
+entrance_marker = NodePath("EntrancePoint")
+exit_marker = NodePath("ExitPoint")
 metadata/_custom_type_script = "uid://ckd33y7jnpale"
 
 [node name="decoration_layer" type="TileMapLayer" parent="." unique_id=1538739578]
@@ -33,11 +32,3 @@ position = Vector2(129, 47)
 
 [node name="EntrancePoint" type="Marker2D" parent="." unique_id=1715591562]
 position = Vector2(-129, 47)
-
-[node name="fragment_area" type="Area2D" parent="." unique_id=584630123]
-collision_layer = 128
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fragment_area" unique_id=521711033]
-position = Vector2(0, 51)
-shape = SubResource("RectangleShape2D_1cw2q")

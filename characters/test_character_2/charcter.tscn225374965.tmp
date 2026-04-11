@@ -33,7 +33,5 @@ shape = SubResource("RectangleShape2D_6kk5w")
 debug_color = Color(0.25334, 0.635027, 0, 0.42)
 
 [node name="feet_point" parent="." unique_id=1629091637 instance=ExtResource("5_mnigu")]
-position = Vector2(0, 13)
 
 [node name="grab_point" parent="." unique_id=378343355 instance=ExtResource("4_fr4xc")]
-position = Vector2(13, -8)

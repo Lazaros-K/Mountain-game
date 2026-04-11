@@ -15,13 +15,9 @@ texture = ExtResource("1_g4psx")
 [node name="test_character" parent="." unique_id=109764833 instance=ExtResource("2_r8pao")]
 position = Vector2(-202, -15)
 
-[node name="Camera2D" type="Camera2D" parent="test_character" unique_id=2087183718]
-
 [node name="RoomsContainer" type="Node2D" parent="." unique_id=121938335]
 script = ExtResource("4_o87pg")
 rooms = Array[PackedScene]([ExtResource("5_r8pao"), ExtResource("6_r8pao"), ExtResource("5_ibqei")])
 
 [node name="TileMap" parent="." unique_id=985964851 instance=ExtResource("5_ibqei")]
 position = Vector2(-134, -48)
-
-[connection signal="map_fragment_changed" from="test_character" to="RoomsContainer" method="update_chunk_window"]
