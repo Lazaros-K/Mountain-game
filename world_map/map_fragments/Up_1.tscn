@@ -18,7 +18,7 @@ tile_set = ExtResource("2_7cxpk")
 tile_set = ExtResource("3_5rnp6")
 
 [node name="solid_layer" type="TileMapLayer" parent="." unique_id=1284002577]
-tile_map_data = PackedByteArray("AAD6/wIAAAADAAAAAAD7/wIAAAAFAAAAAAD9/wEAAAADAAAAAAD+/wEAAAAFAAAAAAABAAAAAAADAAAAAAACAAAAAAAFAAAAAAAEAP//AAADAAAAAAAFAP//AAAFAAAAAAAHAP7/AAADAAEAAAA=")
+tile_map_data = PackedByteArray("AAD6/wIAAAADAAAAAAD7/wIAAAAFAAAAAAD9/wEAAAADAAAAAAD+/wEAAAAFAAAAAAABAAAAAAADAAAAAAACAAAAAAAFAAAAAAAEAP//AAADAAAAAAAFAP//AAAFAAAAAAAHAP7/AAADAAEAAAD6/wEAAQAGAAMAAAD6/wAAAQAGAAMAAAA=")
 tile_set = ExtResource("2_7cxpk")
 
 [node name="solid_mock_layer" type="TileMapLayer" parent="." unique_id=1933851886]

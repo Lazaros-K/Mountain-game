@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b24n5gxpe6b6v" path="res://characters/test_character_2/charcter.gd" id="1_ghnm4"]
 [ext_resource type="Texture2D" uid="uid://dkknhuk0aouxg" path="res://characters/test_character_2/assets/green_text.png" id="2_1aeb4"]
 [ext_resource type="Script" uid="uid://o4t8kgxp817r" path="res://common/hitbox_hurtbox_system/HurtBox.gd" id="3_fr4xc"]
-[ext_resource type="Script" uid="uid://dnd5nenrc7gp6" path="res://world_map/level_system/map_detection_points/MapDetectionPoint.gd" id="4_1aeb4"]
-[ext_resource type="Script" uid="uid://cmt5ubif6khm1" path="res://world_map/level_system/map_detection_points/CharacterMapPoint.gd" id="5_fr4xc"]
+[ext_resource type="Script" uid="uid://dnd5nenrc7gp6" path="res://world_map/level_system/level_generation/MapDetectionPoint.gd" id="4_1aeb4"]
+[ext_resource type="Script" uid="uid://cmt5ubif6khm1" path="res://world_map/level_system/level_generation/CharacterMapPoint.gd" id="5_fr4xc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qm75l"]
 size = Vector2(24, 24)
@@ -33,11 +33,9 @@ shape = SubResource("RectangleShape2D_6kk5w")
 debug_color = Color(0.25334, 0.635027, 0, 0.42)
 
 [node name="MapDetectionPoint" type="Marker2D" parent="." unique_id=862729146]
-position = Vector2(13, -9)
 script = ExtResource("4_1aeb4")
 metadata/_custom_type_script = "uid://dnd5nenrc7gp6"
 
 [node name="CharacterMapPoint" type="Marker2D" parent="." unique_id=1854543908]
-position = Vector2(0, 13)
 script = ExtResource("5_fr4xc")
 metadata/_custom_type_script = "uid://cmt5ubif6khm1"

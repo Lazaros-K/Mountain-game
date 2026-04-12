@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bjjqc77snl0yo" path="res://world_map/assets/grey_bg.png" id="1_g4psx"]
 [ext_resource type="PackedScene" uid="uid://p4uoycqrks1u" path="res://characters/test_character_2/charcter.tscn" id="2_r8pao"]
-[ext_resource type="Script" uid="uid://dwkfuqcdddpuk" path="res://world_map/level_generation/scripts/level_manager.gd" id="4_o87pg"]
+[ext_resource type="Script" uid="uid://dwkfuqcdddpuk" path="res://world_map/level_system/level_generation/level_manager.gd" id="4_o87pg"]
 [ext_resource type="PackedScene" uid="uid://rfa8rir3quar" path="res://world_map/map_fragments/Right_1.tscn" id="5_ibqei"]
 [ext_resource type="PackedScene" uid="uid://knhdu37ovocq" path="res://world_map/map_fragments/Up_1.tscn" id="5_r8pao"]
 [ext_resource type="PackedScene" uid="uid://baj210573tmsh" path="res://world_map/map_fragments/Up_2.tscn" id="6_r8pao"]
@@ -14,6 +14,9 @@ texture = ExtResource("1_g4psx")
 
 [node name="test_character" parent="." unique_id=109764833 instance=ExtResource("2_r8pao")]
 position = Vector2(-202, -15)
+speed = 1000.0
+jump_velocity = -250.0
+fly = true
 
 [node name="Camera2D" type="Camera2D" parent="test_character" unique_id=2087183718]
 
@@ -24,4 +27,7 @@ rooms = Array[PackedScene]([ExtResource("5_r8pao"), ExtResource("6_r8pao"), ExtR
 [node name="TileMap" parent="." unique_id=985964851 instance=ExtResource("5_ibqei")]
 position = Vector2(-134, -48)
 
-[connection signal="map_fragment_changed" from="test_character" to="RoomsContainer" method="update_chunk_window"]
+[connection signal="map_fragment_changed" from="test_character/CharacterMapPoint" to="RoomsContainer" method="_on_character_map_fragment_changed"]
+
+[editable path="test_character"]
+[editable path="TileMap"]

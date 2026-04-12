@@ -8,11 +8,13 @@ extends Node
 
 # Seed Values ( Can be used for settings )
 @export var use_custom_seed: bool = false
-@export var level_seed: int = 12345
+@export var level_seed: int = 80085
 
 
-var generated_chunk_memory: Dictionary = {} # All chunks generated over progression
-var active_chunks: Dictionary = {} # Chunks active in scene
+## All fragments generated over the progression
+var generated_fragment_cache: Dictionary[int,Dictionary] = {}
+## Map fragments active in scene
+var active_fragments: Dictionary[int,TileMapManager] = {} 
 
 var next_spawn_position: Vector2 = Vector2.ZERO
 var highest_generated_index: int = -1
@@ -22,10 +24,10 @@ var highest_generated_index: int = -1
 func _ready() -> void:
 	
 	# Checks if we use custom seed
-	if use_custom_seed:
-		seed(level_seed)
-	else:
-		randomize()
+	if not use_custom_seed:
+		level_seed = randi()
+	seed(level_seed)
+	print("Level seed is: ", level_seed)
 	
 	# First chunk creation and loading
 	for i: int in range(chunks_ahead + 1):
@@ -34,7 +36,7 @@ func _ready() -> void:
 	update_chunk_window(0)
 
 func generate_chunk_data(index: int) -> void:
-	if generated_chunk_memory.has(index):
+	if generated_fragment_cache.has(index):
 		return
 		
 	var room_to_spawn: PackedScene
@@ -44,60 +46,62 @@ func generate_chunk_data(index: int) -> void:
 	var temp_room: TileMapManager = room_to_spawn.instantiate()
 	var spawn_pos: Vector2 = next_spawn_position
 	
-	# Saves spawn position from entrance marker
+	# Modifies spawn position based on the entrance marker
 	var entrance_marker: Marker2D = temp_room.entrance_marker
-	if entrance_marker != null:
-		spawn_pos -= entrance_marker.position
-		
-	# Saves exit position for the next time
+	spawn_pos -= entrance_marker.position
+	
+	# Saves exit position for the next fragment spawn
 	var exit_marker: Marker2D = temp_room.exit_marker
-	if exit_marker != null:
-		next_spawn_position = spawn_pos + exit_marker.position
-		
-	# Save data from above
-	generated_chunk_memory[index] = {
+	next_spawn_position = spawn_pos + exit_marker.position
+	
+	# Cache spawned fragmetn
+	generated_fragment_cache[index] = {
 		"scene": room_to_spawn,
 		"position": spawn_pos
 	}
 	
 	highest_generated_index = index
 	temp_room.queue_free()
-	
+
 func update_chunk_window(current_player_index: int) -> void:
 	var start_index: int = max(0, current_player_index - chunks_behind)
 	var end_index: int = current_player_index + chunks_ahead
 	
-	# Generates chunks while we're behind
+	# Generates new fragments
 	while highest_generated_index < end_index:
 		generate_chunk_data(highest_generated_index + 1) 
 		
 	# Load non active chunks
 	for i: int in range(start_index, end_index + 1):
-		if not active_chunks.has(i):
+		if not active_fragments.has(i):
 			load_chunk(i)
 			
 	# Unload far behind or ahead chunks
-	for loaded_index:int in active_chunks.keys():
+	for loaded_index: int in active_fragments.keys():
 		if loaded_index < start_index or loaded_index > end_index:
 			unload_chunk(loaded_index)
 			
 
-# "Imports" chunk from Dictionary index, gives it the correct position and index
+# Instantiates fragment from Dictionary based on the index, gives it the correct position
 # and adds it to the active chunks
 func load_chunk(index: int) -> void:
-	var data: Dictionary = generated_chunk_memory[index]
+	var data: Dictionary = generated_fragment_cache[index]
 	var room_scene: PackedScene = data["scene"]
 	var new_room: TileMapManager = room_scene.instantiate() as TileMapManager
 	new_room.global_position = data["position"]
 	new_room.fragment_index = index
 	
 	self.add_child(new_room)
-	active_chunks[index] = new_room
+	active_fragments[index] = new_room
 
-# Finds the room that needs unloading the the active_chunks
-# and deletes it from both the active dictionary and ram
+# Finds the room that needs unloading in the active_fragments,
+# and deletes it from both the active dictionary and the scene
 func unload_chunk(index: int) -> void:
-	if active_chunks.has(index):
-		var room: TileMapManager = active_chunks[index]
+	if active_fragments.has(index):
+		var room: TileMapManager = active_fragments[index]
 		room.queue_free()
-		active_chunks.erase(index)
+		active_fragments.erase(index)
+
+
+func _on_character_map_fragment_changed(new_index: int) -> void:
+	update_chunk_window(new_index)
