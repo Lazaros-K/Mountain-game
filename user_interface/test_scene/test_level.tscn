@@ -4,7 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://l8segejsovjy" path="res://characters/test_character/charcter.tscn" id="2_g31v2"]
 [ext_resource type="PackedScene" uid="uid://c85j1xjfj4wlb" path="res://world_map/map_fragments/map_fragment_template.tscn" id="3_dne5a"]
 [ext_resource type="PackedScene" uid="uid://1bo5uyadwikm" path="res://user_interface/pause_menu/pause_menu.tscn" id="4_l4uq5"]
+[ext_resource type="PackedScene" uid="uid://66lwjkf163y7" path="res://user_interface/score/score_counter.tscn" id="4_ly405"]
 [ext_resource type="PackedScene" uid="uid://d0o4v184kk7ph" path="res://user_interface/heart_bar/heart_bar.tscn" id="5_jj7ei"]
+[ext_resource type="AudioStream" uid="uid://da6p5dwh47d2b" path="res://user_interface/assets/DST-TowerDefenseTheme.mp3" id="6_4085j"]
+[ext_resource type="AudioStream" uid="uid://cu2gobt78ko2b" path="res://user_interface/assets/Fantasy Choir 1.wav" id="6_wr86y"]
 
 [node name="test_level" type="Node2D" unique_id=392777027]
 
@@ -21,7 +24,19 @@ zoom = Vector2(2.5, 2.5)
 
 [node name="TileMap" parent="." unique_id=578587331 instance=ExtResource("3_dne5a")]
 
+[node name="ScoreCounter" parent="." unique_id=1120548581 instance=ExtResource("4_ly405")]
+test_character_path = NodePath("../test_character")
+
 [node name="HeartBar" parent="." unique_id=489534523 instance=ExtResource("5_jj7ei")]
 
 [node name="pause_menu" parent="." unique_id=273633992 instance=ExtResource("4_l4uq5")]
-visible = false
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=250851649]
+stream = ExtResource("6_4085j")
+autoplay = true
+bus = &"Music"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=1473016374]
+stream = ExtResource("6_wr86y")
+autoplay = true
+bus = &"SFX"

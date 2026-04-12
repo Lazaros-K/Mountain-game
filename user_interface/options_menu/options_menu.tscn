@@ -3,6 +3,8 @@
 [ext_resource type="FontFile" uid="uid://do6g4882cwgd6" path="res://user_interface/assets/Jersey10-Regular.ttf" id="1_esvj4"]
 [ext_resource type="Script" uid="uid://c0604if543rim" path="res://user_interface/options_menu/options_menu.gd" id="1_uad7m"]
 [ext_resource type="Script" uid="uid://c4f5uxmt0hpj8" path="res://user_interface/options_menu/screen_mode_b.gd" id="2_uad7m"]
+[ext_resource type="Script" uid="uid://dsoxjlvsaxtng" path="res://user_interface/options_menu/music_slider.gd" id="4_nqum7"]
+[ext_resource type="Script" uid="uid://ctmp7mpyvdvqo" path="res://user_interface/options_menu/sfx_slider.gd" id="5_065b5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uad7m"]
 bg_color = Color(0.44705883, 0.67058825, 0.72156864, 1)
@@ -39,6 +41,54 @@ shadow_size = 5
 shadow_offset = Vector2(0, 3.5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_065b5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uad7m"]
+load_path = "res://.godot/imported/slider_grabber.png-e3d1d2914c8866d63ccb5d5cb5779581.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nqum7"]
+load_path = "res://.godot/imported/slider_grabber.png-e3d1d2914c8866d63ccb5d5cb5779581.ctex"
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_uad7m"]
+color = Color(1, 1, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nqum7"]
+color = Color(0.18696985, 0.41740197, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_1qpdk"]
+color = Color(0.18696985, 0.41740197, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 6
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1qpdk"]
+load_path = "res://.godot/imported/slider_grabber.png-e3d1d2914c8866d63ccb5d5cb5779581.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jnd3g"]
+load_path = "res://.godot/imported/slider_grabber.png-e3d1d2914c8866d63ccb5d5cb5779581.ctex"
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jnd3g"]
+color = Color(1, 1, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_065b5"]
+color = Color(0.18696985, 0.41740197, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_55ngu"]
+color = Color(0.18696985, 0.41740197, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 6
 
 [node name="OptionsMenu" type="Control" unique_id=245634936]
 layout_mode = 3
@@ -148,10 +198,22 @@ theme_override_fonts/font = ExtResource("1_esvj4")
 theme_override_font_sizes/font_size = 35
 text = "Music"
 
-[node name="HSlider" type="HSlider" parent="Options/VBoxContainer/HBoxContainer" unique_id=851479996]
+[node name="MusicSlider" type="HSlider" parent="Options/VBoxContainer/HBoxContainer" unique_id=851479996]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_constants/center_grabber = -1
+theme_override_constants/grabber_offset = -1
+theme_override_icons/grabber = SubResource("CompressedTexture2D_uad7m")
+theme_override_icons/grabber_highlight = SubResource("CompressedTexture2D_nqum7")
+theme_override_styles/slider = SubResource("StyleBoxLine_uad7m")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_nqum7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_1qpdk")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("4_nqum7")
+audio_bus_name = "Music"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Options/VBoxContainer" unique_id=1876104191]
 layout_mode = 2
@@ -165,10 +227,24 @@ theme_override_fonts/font = ExtResource("1_esvj4")
 theme_override_font_sizes/font_size = 35
 text = "SFX"
 
-[node name="HSlider" type="HSlider" parent="Options/VBoxContainer/HBoxContainer2" unique_id=118884196]
+[node name="SFXSlider" type="HSlider" parent="Options/VBoxContainer/HBoxContainer2" unique_id=118884196]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme_override_constants/center_grabber = -1
+theme_override_constants/grabber_offset = -1
+theme_override_icons/grabber = SubResource("CompressedTexture2D_1qpdk")
+theme_override_icons/grabber_highlight = SubResource("CompressedTexture2D_jnd3g")
+theme_override_styles/slider = SubResource("StyleBoxLine_jnd3g")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_065b5")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_55ngu")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("5_065b5")
+audio_bus_name = "SFX"
 
 [connection signal="pressed" from="Options/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="toggled" from="Options/VBoxContainer/ScreenModeB" to="Options/VBoxContainer/ScreenModeB" method="_on_toggled"]
+[connection signal="value_changed" from="Options/VBoxContainer/HBoxContainer/MusicSlider" to="Options/VBoxContainer/HBoxContainer/MusicSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="Options/VBoxContainer/HBoxContainer2/SFXSlider" to="Options/VBoxContainer/HBoxContainer2/SFXSlider" method="_on_value_changed"]

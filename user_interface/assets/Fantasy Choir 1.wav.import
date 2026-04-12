@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cu2gobt78ko2b"
+path="res://.godot/imported/Fantasy Choir 1.wav-3bdd362b0c1e2bff3d8469aa8874981c.sample"
+
+[deps]
+
+source_file="res://user_interface/assets/Fantasy Choir 1.wav"
+dest_files=["res://.godot/imported/Fantasy Choir 1.wav-3bdd362b0c1e2bff3d8469aa8874981c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
