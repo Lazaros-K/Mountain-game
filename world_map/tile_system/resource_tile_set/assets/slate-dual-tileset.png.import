@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3at2wq3qp10c"
-path="res://.godot/imported/dual-tileset-spikes.png-39a59abd5b95548ba20b375a16e2121e.ctex"
+uid="uid://84gfq0gap14u"
+path="res://.godot/imported/slate-dual-tileset.png-fef382aafdffbce315bc28e9b33332b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world_map/tile_system/resource_tile_set/assets/dual-tileset-spikes.png"
-dest_files=["res://.godot/imported/dual-tileset-spikes.png-39a59abd5b95548ba20b375a16e2121e.ctex"]
+source_file="res://world_map/tile_system/resource_tile_set/assets/slate-dual-tileset.png"
+dest_files=["res://.godot/imported/slate-dual-tileset.png-fef382aafdffbce315bc28e9b33332b2.ctex"]
 
 [params]
 

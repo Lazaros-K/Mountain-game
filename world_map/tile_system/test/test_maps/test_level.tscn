@@ -1,8 +1,8 @@
-[gd_scene format=4 uid="uid://bjrt5fniapph4"]
+[gd_scene format=3 uid="uid://bjrt5fniapph4"]
 
 [ext_resource type="Texture2D" uid="uid://bjjqc77snl0yo" path="res://world_map/assets/grey_bg.png" id="1_et3r8"]
 [ext_resource type="PackedScene" uid="uid://l8segejsovjy" path="res://characters/test_character/charcter.tscn" id="2_wfp8v"]
-[ext_resource type="PackedScene" uid="uid://c85j1xjfj4wlb" path="res://world_map/map_fragments/map_fragment_template.tscn" id="3_0bq3w"]
+[ext_resource type="PackedScene" uid="uid://cohpp3so5b1nc" path="res://world_map/map_fragments/map_fragment1.tscn" id="3_p3y20"]
 
 [node name="test_level" type="Node2D" unique_id=392777027]
 
@@ -10,15 +10,11 @@
 texture = ExtResource("1_et3r8")
 
 [node name="test_character" parent="." unique_id=109764833 node_paths=PackedStringArray("current_map_fragment") instance=ExtResource("2_wfp8v")]
-position = Vector2(-20, 36)
-current_map_fragment = NodePath("../map_fragment")
+position = Vector2(5, -24)
+current_map_fragment = NodePath("../TileMapManager")
 fly = true
 
 [node name="Camera2D" type="Camera2D" parent="test_character" unique_id=874370524]
 zoom = Vector2(2.5, 2.5)
 
-[node name="map_fragment" parent="." unique_id=578587331 instance=ExtResource("3_0bq3w")]
-tile_map_data = PackedByteArray("AAD+////AQABAAAAAAD9////AQABAAAAAAD9/wAAAQABAAAAAAD+/wAAAQABAAAAAAD+//7/AQABAAAAAAD//wAAAQAAAAAAAAD//wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD/////AQACAAAAAAAAAP//AQACAAAAAAAAAP7/AQACAAAAAAD///7/AQACAAAAAAD///3/AQAAAAAAAAD+//3/AQAAAAAAAAD9//3/AQAAAAAAAAD9//7/AQAAAAAAAAD8//7/AQAAAAAAAAD8////AQAAAAAAAAD8/wAAAQAAAAAAAAAAAPz/AQACAAAAAAAAAP3/AQAAAAAAAAD///z/AQAAAAAAAAD6//v/AQACAAAAAAA=")
-
-[node name="Marker2D" type="Marker2D" parent="." unique_id=752591396]
-position = Vector2(-25, -8)
+[node name="TileMapManager" parent="." unique_id=416635162 instance=ExtResource("3_p3y20")]

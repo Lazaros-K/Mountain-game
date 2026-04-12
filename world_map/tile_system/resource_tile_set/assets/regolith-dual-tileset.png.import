@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6b7nuv4kcrs"
-path="res://.godot/imported/dual-tileset.png-83c2760aee403d23946887b08a2b3de8.ctex"
+uid="uid://yci4uwp1c0f6"
+path="res://.godot/imported/regolith-dual-tileset.png-19df689b2b5850b3bb96eab371a001e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world_map/tile_system/resource_tile_set/assets/dual-tileset.png"
-dest_files=["res://.godot/imported/dual-tileset.png-83c2760aee403d23946887b08a2b3de8.ctex"]
+source_file="res://world_map/tile_system/resource_tile_set/assets/regolith-dual-tileset.png"
+dest_files=["res://.godot/imported/regolith-dual-tileset.png-19df689b2b5850b3bb96eab371a001e4.ctex"]
 
 [params]
 

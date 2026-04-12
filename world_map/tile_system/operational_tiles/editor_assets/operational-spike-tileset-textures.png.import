@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbf0cx0vagj7t"
-path="res://.godot/imported/dual-tileset2.png-cd92a26a6ae460d3511b1da78ee4736d.ctex"
+uid="uid://cpj53btorbvrj"
+path="res://.godot/imported/operational-spike-tileset-textures.png-9d6c7708c6ef20e742cf0cbe9ff058ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world_map/tile_system/resource_tile_set/assets/dual-tileset2.png"
-dest_files=["res://.godot/imported/dual-tileset2.png-cd92a26a6ae460d3511b1da78ee4736d.ctex"]
+source_file="res://world_map/tile_system/operational_tiles/editor_assets/operational-spike-tileset-textures.png"
+dest_files=["res://.godot/imported/operational-spike-tileset-textures.png-9d6c7708c6ef20e742cf0cbe9ff058ec.ctex"]
 
 [params]
 

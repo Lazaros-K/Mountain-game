@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coqw6e4i1f5ul"
-path="res://.godot/imported/operational-tileset-textures.png-48322d77bcae157bce7e7f9bd69b05b3.ctex"
+uid="uid://0gmsbm4u8mvv"
+path="res://.godot/imported/snow-dual-tileset.png-dc11390f101d0e0f4485b1b5618060a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world_map/tile_system/operational_tiles/editor_assets/operational-tileset-textures.png"
-dest_files=["res://.godot/imported/operational-tileset-textures.png-48322d77bcae157bce7e7f9bd69b05b3.ctex"]
+source_file="res://world_map/tile_system/resource_tile_set/assets/snow-dual-tileset.png"
+dest_files=["res://.godot/imported/snow-dual-tileset.png-dc11390f101d0e0f4485b1b5618060a2.ctex"]
 
 [params]
 

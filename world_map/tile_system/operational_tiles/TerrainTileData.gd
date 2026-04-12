@@ -1,4 +1,4 @@
-class_name SolidTileData
+class_name TerrainTileData
 ## Responsible for formating and storing a tile's TileData from solid_layer_tileset.
 
 var friction: int

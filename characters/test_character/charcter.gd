@@ -27,13 +27,13 @@ func _physics_process(delta: float) -> void :
 	
 
 func get_on_floor_data() -> void :
-	var tile_data: SolidTileData = current_map_fragment.get_tile_data(feet_point.global_position)
+	var tile_data: TerrainTileData = current_map_fragment.get_tile_data(feet_point.global_position)
 	if not tile_data :
 		return
 	print("floor friction: " ,tile_data.friction)
 
 func get_on_wall_data() -> void :
-	var tile_data: SolidTileData = current_map_fragment.get_tile_data(grab_point.global_position)
+	var tile_data: TerrainTileData = current_map_fragment.get_tile_data(grab_point.global_position)
 	if not tile_data :
 		return
 	print("wall anchroring: " ,tile_data.wall_anchoring)
