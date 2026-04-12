@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://cbogkxk34jt8d" path="res://common/hitbox_hurtbox_system/hitboxes/StaticHitBox.gd" id="2_jf5bs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xt8wf"]
-size = Vector2(14, 5)
+size = Vector2(12, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xeutw"]
-size = Vector2(14, 11)
+size = Vector2(14, 12)
 
 [node name="Spike" type="Sprite2D" unique_id=1842764490]
 texture = ExtResource("1_xt8wf")
@@ -27,5 +27,5 @@ damage = 1
 metadata/_custom_type_script = "uid://cbogkxk34jt8d"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticHitBox" unique_id=1901782256]
-position = Vector2(0, 2.5)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_xeutw")

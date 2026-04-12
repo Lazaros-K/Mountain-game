@@ -2,11 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://bjjqc77snl0yo" path="res://world_map/assets/grey_bg.png" id="1_et3r8"]
 [ext_resource type="PackedScene" uid="uid://l8segejsovjy" path="res://characters/test_character/charcter.tscn" id="2_wfp8v"]
-[ext_resource type="PackedScene" uid="uid://cohpp3so5b1nc" path="res://world_map/map_fragments/map_fragment1.tscn" id="3_p3y20"]
+[ext_resource type="PackedScene" uid="uid://cisxlx3sa7dek" path="res://world_map/map_fragments/map_fragment1.tscn" id="3_p3y20"]
 
 [node name="test_level" type="Node2D" unique_id=392777027]
 
 [node name="background" type="Sprite2D" parent="." unique_id=1342171354]
+z_index = -1
 texture = ExtResource("1_et3r8")
 
 [node name="test_character" parent="." unique_id=109764833 node_paths=PackedStringArray("current_map_fragment") instance=ExtResource("2_wfp8v")]

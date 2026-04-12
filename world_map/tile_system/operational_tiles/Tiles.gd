@@ -1,4 +1,5 @@
 class_name Tiles
+## A simple enum storing all tile IDs
 
 enum ID {
 	SNOW = 0,

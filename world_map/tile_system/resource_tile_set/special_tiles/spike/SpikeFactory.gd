@@ -7,8 +7,10 @@ func _init() -> void :
 	if not spike_tile_cache.has("spike") :
 		spike_tile_cache.set("spike", load(spike_scene_uid))
 
+## Returns an instance of spikes special tile
 func create_special_tile(special_id: int, operational_tilemap: TileMapLayer, pos: Vector2i) -> Node2D :
 	
+	# Based on were the spike is facing, edit position to find what they are based on
 	if special_id == ResourceTiles.SPECIAL.SPIKE_DOWN :
 		pos.y -= 1
 	elif special_id == ResourceTiles.SPECIAL.SPIKE_RIGHT :
@@ -18,6 +20,7 @@ func create_special_tile(special_id: int, operational_tilemap: TileMapLayer, pos
 	else :
 		pos.y += 1
 	
+	# get the terrain_id of the tile the spikes are based on
 	var cell_data: TileData = operational_tilemap.get_cell_tile_data(pos)
 	var terrain_id: int = -1
 	if cell_data :
@@ -29,6 +32,7 @@ func create_special_tile(special_id: int, operational_tilemap: TileMapLayer, pos
 	if spike_tile_cache.has(key) :
 		return spike_tile_cache[key].instantiate()
 	
+	# if the spike type isn't cached, create it
 	var spike: Sprite2D = spike_tile_cache["spike"].instantiate()
 	
 	if terrain_id == ResourceTiles.TERRAIN.SNOW or terrain_id == ResourceTiles.TERRAIN.ICE :
@@ -43,6 +47,7 @@ func create_special_tile(special_id: int, operational_tilemap: TileMapLayer, pos
 	elif special_id == ResourceTiles.SPECIAL.SPIKE_LEFT :
 		spike.rotation_degrees = -90
 	
+	# create a packed scene, cache and return
 	var packed_tile: PackedScene = PackedScene.new()
 	var error: Error = packed_tile.pack(spike)
 	if error != OK:

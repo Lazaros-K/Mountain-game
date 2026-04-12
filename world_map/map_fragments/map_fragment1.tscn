@@ -1,12 +1,16 @@
-[gd_scene format=4 uid="uid://cohpp3so5b1nc"]
+[gd_scene format=4 uid="uid://cisxlx3sa7dek"]
 
 [ext_resource type="TileSet" uid="uid://bdcjvmyym5quv" path="res://world_map/tile_system/operational_tiles/operational_tile_set.tres" id="1_w48vg"]
 [ext_resource type="Script" uid="uid://ckd33y7jnpale" path="res://world_map/tile_system/TileMapManager.gd" id="2_nx65o"]
+[ext_resource type="Texture2D" uid="uid://8i1d8pihxm47" path="res://world_map/assets/icefish.png" id="3_nx65o"]
 
 [node name="TileMapManager" type="TileMapLayer" unique_id=416635162]
 tile_map_data = PackedByteArray("AAD9/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAAFAAEAAAABAAAAAAAFAAAAAAABAAAAAAAFAP//AAABAAAAAAAGAP//AAABAAAAAAAGAAAAAAABAAAAAAAGAAEAAAABAAAAAAAGAP7/AAABAAAAAAAFAP7/AAABAAAAAAAFAP3/AAABAAAAAAAGAP3/AAABAAAAAAD7/wIAAAADAAAAAAD6/wIAAAADAAAAAAD5/wIAAAADAAAAAAAEAP3/AQADAAAAAAAEAP7/AQADAAAAAAAEAP//AQADAAAAAAD8/wEAAQAAAAAAAAD9/wEAAQAAAAAAAAADAAEAAQAAAAAAAAD8//3/AAACAAAAAAD9//3/AQABAAAAAAD8//z/AQAAAAAAAAD7//3/AQADAAAAAAD8//7/AQACAAAAAAD9//7/AAACAAAAAAD+//7/AAACAAAAAAD8/wQAAQACAAAAAAD9/wQAAQACAAAAAAD+/wQAAQACAAAAAAD//wQAAQACAAAAAAAAAAQAAQACAAAAAAABAAQAAQACAAAAAAACAAQAAQACAAAAAAADAAQAAQACAAAAAAAEAAMAAQABAAAAAAAHAAMAAQABAAAAAAAHAAQAAQABAAAAAAA=")
 tile_set = ExtResource("1_w48vg")
 script = ExtResource("2_nx65o")
-top_left_cell_coords = Vector2i(-40, -40)
-bottom_right_cell_coords = Vector2i(39, 39)
 metadata/_custom_type_script = "uid://ckd33y7jnpale"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1051419093]
+z_index = -1
+position = Vector2(-68, 23)
+texture = ExtResource("3_nx65o")

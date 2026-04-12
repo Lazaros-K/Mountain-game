@@ -1,5 +1,5 @@
 class_name TerrainTileData
-## Responsible for formating and storing a tile's TileData from solid_layer_tileset.
+## Responsible for formating and storing a tile's TileData
 
 var friction: int
 var wall_anchoring: int
