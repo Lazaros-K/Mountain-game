@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://3k75wdtqpob0"]
+
+[ext_resource type="TileSet" uid="uid://bdcjvmyym5quv" path="res://world_map/tile_system/operational_tiles/operational_tile_set.tres" id="1_vgtol"]
+[ext_resource type="Script" uid="uid://ckd33y7jnpale" path="res://world_map/tile_system/TileMapManager.gd" id="2_7waml"]
+
+[node name="TileMap" type="TileMapLayer" unique_id=810867101]
+z_index = 1
+tile_set = ExtResource("1_vgtol")
+script = ExtResource("2_7waml")
+metadata/_custom_type_script = "uid://ckd33y7jnpale"

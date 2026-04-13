@@ -3,14 +3,18 @@ extends TileMapLayer
 ## Manages the tiles of a complex tilemap implementation,
 ## featuring a dual grid, and special tile scenes
 
-@export var tilemap_id: String
 @export var debug_mode: bool = false
 
 var terrain_tilemaps: Array[TileMapLayer] = Array([], TYPE_OBJECT, "TileMapLayer", null)
 var special_tiles: Dictionary = {}
 
 func get_tileid(pos: Vector2i) -> int :
-	return get_cell_tile_data(pos).get_custom_data("tile_id")
+	var tile_data: TileData = self.get_cell_tile_data(pos)
+	return tile_data.get_custom_data("tile_id") if tile_data else -1
+
+func get_tile_data(pos: Vector2i) -> TerrainTileData :
+	var tile_data: TileData = self.get_cell_tile_data(pos)
+	return TerrainTileData.new(tile_data) if tile_data else null
 
 func _ready() -> void:
 	# create resource tilemap layers using the resource tileset
@@ -30,13 +34,6 @@ func _ready() -> void:
 	
 	# Updates the every tile in the tile map
 	update_tile_resources(get_used_cells())
-
-## Returns the SolidTileData of the tile in actor_position
-func get_tile_data(actor_position: Vector2) -> TerrainTileData :
-	var tile_data: TileData = self.get_cell_tile_data(self.local_to_map(actor_position))
-	if not tile_data :
-		return null
-	return TerrainTileData.new(tile_data);
 
 ## Updates all resource tiles in the given array of positions
 func update_tile_resources(tiles: Array[Vector2i]) -> void :

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d2sn2mxe1y3el"]
+
+[ext_resource type="PackedScene" uid="uid://db0p1cksthptd" path="res://world_map/map_fragmentation/map_fragments/snow1.tscn" id="1_wi5k0"]
+[ext_resource type="Script" uid="uid://dwkfuqcdddpuk" path="res://world_map/level_system/level_generation/MapGenerator.gd" id="2_s2an8"]
+[ext_resource type="PackedScene" uid="uid://p4uoycqrks1u" path="res://characters/test_character_2/charcter.tscn" id="2_ug7fp"]
+[ext_resource type="PackedScene" uid="uid://bjswl1om24gp" path="res://world_map/map_fragmentation/map_fragments/snow2.tscn" id="3_s2an8"]
+
+[node name="TestLevel" type="Node2D" unique_id=1529079746]
+
+[node name="snow1" parent="." unique_id=1062695257 instance=ExtResource("1_wi5k0")]
+
+[node name="Map_generator" type="Node" parent="." unique_id=1175856051]
+script = ExtResource("2_s2an8")
+rooms = Array[PackedScene]([ExtResource("1_wi5k0"), ExtResource("3_s2an8")])
+metadata/_custom_type_script = "uid://dwkfuqcdddpuk"
+
+[node name="test_character" parent="." unique_id=109764833 instance=ExtResource("2_ug7fp")]
+position = Vector2(25, -68)
+
+[node name="Camera2D" type="Camera2D" parent="test_character" unique_id=1065869612]

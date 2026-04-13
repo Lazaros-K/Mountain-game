@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d2sn2mxe1y3el"]
+
+[ext_resource type="PackedScene" uid="uid://db0p1cksthptd" path="res://world_map/map_fragments/snow1.tscn" id="1_wi5k0"]
+[ext_resource type="PackedScene" uid="uid://p4uoycqrks1u" path="res://characters/test_character_2/charcter.tscn" id="2_ug7fp"]
+
+[node name="TestLevel" type="Node2D" unique_id=1529079746]
+
+[node name="snow1" parent="." unique_id=1062695257 instance=ExtResource("1_wi5k0")]
+
+[node name="test_character" parent="." unique_id=109764833 instance=ExtResource("2_ug7fp")]
+position = Vector2(25, -68)
+speed = 1000.0
+jump_velocity = -250.0
+fly = true
+
+[node name="Camera2D" type="Camera2D" parent="test_character" unique_id=1065869612]

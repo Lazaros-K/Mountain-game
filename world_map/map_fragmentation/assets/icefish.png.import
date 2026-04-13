@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8i1d8pihxm47"
-path="res://.godot/imported/icefish.png-c3a491aa8c7e37e883abcc3787bf5780.ctex"
+path="res://.godot/imported/icefish.png-2ff5e98d8b1a2244f2a2516301f05964.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world_map/assets/icefish.png"
-dest_files=["res://.godot/imported/icefish.png-c3a491aa8c7e37e883abcc3787bf5780.ctex"]
+source_file="res://world_map/map_fragmentation/assets/icefish.png"
+dest_files=["res://.godot/imported/icefish.png-2ff5e98d8b1a2244f2a2516301f05964.ctex"]
 
 [params]
 

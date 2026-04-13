@@ -1,16 +1,20 @@
 extends CharacterBody2D
 
-@onready var grab_point: Marker2D = $grab_point
-@onready var feet_point: Marker2D = $feet_point
+@onready var grab_point: MapDetectionPoint = $MapDetectionPoint
+@onready var base_point: CharacterMapPoint = $CharacterMapPoint
 
-# when more the one map fragmetns will be available, this should be updated every frame
-@export var current_map_fragment: TileMapManager
 @export var speed: float = 220.0
 @export var jump_velocity: float = -250.0
 @export var fly: bool = false
 
+var current_fragment_index: int = -1
+
+# whatever starts with 'c_' mean that it is called by the game controller
+func c_setup_character(mg: MapGenerator, start_fragment: MapFragment) -> void :
+	base_point.map_fragment = start_fragment
+	base_point.connect("map_fragment_changed",mg._on_character_map_fragment_changed)
+
 func _physics_process(delta: float) -> void :
-	
 	
 	if fly:
 		movement_fly()
@@ -27,13 +31,13 @@ func _physics_process(delta: float) -> void :
 	
 
 func get_on_floor_data() -> void :
-	var tile_data: TerrainTileData = current_map_fragment.get_tile_data(feet_point.global_position)
+	var tile_data: TerrainTileData = base_point.get_data()
 	if not tile_data :
 		return
 	print("floor friction: " ,tile_data.friction)
 
 func get_on_wall_data() -> void :
-	var tile_data: TerrainTileData = current_map_fragment.get_tile_data(grab_point.global_position)
+	var tile_data: TerrainTileData = grab_point.get_data()
 	if not tile_data :
 		return
 	print("wall anchroring: " ,tile_data.wall_anchoring)
@@ -75,3 +79,4 @@ func movement_walk(delta: float) -> void:
 # Mock function made for testing
 func receive_hit_payload(payload: HitPayload) -> void :
 	payload.info();
+	

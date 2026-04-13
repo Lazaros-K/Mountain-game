@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjjqc77snl0yo"
-path="res://.godot/imported/grey_bg.png-1cdced6066bb5a7c08faa3ffef09d6e6.ctex"
+uid="uid://dkknhuk0aouxg"
+path="res://.godot/imported/green_text.png-616b3cfdf77c2ca7616d821a417e115c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world_map/assets/grey_bg.png"
-dest_files=["res://.godot/imported/grey_bg.png-1cdced6066bb5a7c08faa3ffef09d6e6.ctex"]
+source_file="res://characters/test_character_2/assets/green_text.png"
+dest_files=["res://.godot/imported/green_text.png-616b3cfdf77c2ca7616d821a417e115c.ctex"]
 
 [params]
 

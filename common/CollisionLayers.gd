@@ -6,3 +6,4 @@ const WORLD: int = 1
 const PLAYER: int = 2
 const ENEMY: int = 3
 const ENVIROMENT: int = 4
+const MAP_FRAGMENTS: int = 8

@@ -1,0 +1,26 @@
+[gd_scene format=4 uid="uid://db0p1cksthptd"]
+
+[ext_resource type="Script" uid="uid://hqnoaho1cltd" path="res://world_map/map_fragmentation/MapFragment.gd" id="1_clyqs"]
+[ext_resource type="PackedScene" uid="uid://3k75wdtqpob0" path="res://world_map/tile_system/TileMap.tscn" id="2_2a8xo"]
+[ext_resource type="Texture2D" uid="uid://8i1d8pihxm47" path="res://world_map/map_fragmentation/assets/icefish.png" id="3_1jo2q"]
+
+[node name="snow1" type="Node2D" unique_id=2053287255 node_paths=PackedStringArray("tile_map", "entrance_marker", "exit_marker")]
+script = ExtResource("1_clyqs")
+tile_map = NodePath("TileMap")
+top_right_corner = Vector2i(20, 12)
+entrance_marker = NodePath("entrance")
+exit_marker = NodePath("exit")
+metadata/_custom_type_script = "uid://hqnoaho1cltd"
+
+[node name="TileMap" parent="." unique_id=810867101 instance=ExtResource("2_2a8xo")]
+tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAAFAP//AAAAAAAAAAAGAP//AAAAAAAAAAAIAP//AAAAAAAAAAAHAP//AAAAAAAAAAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAAMAP//AAAAAAAAAAALAP//AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAACAP7/AAAAAAAAAAADAP7/AAAAAAAAAAAEAP7/AAACAAAAAAAFAP7/AAAAAAAAAAAGAP7/AAAAAAAAAAAHAP7/AAAAAAAAAAAIAP7/AAAAAAAAAAAJAP7/AAACAAAAAAAKAP7/AAAAAAAAAAALAP7/AAADAAAAAAAMAP7/AAADAAAAAAANAP7/AAADAAAAAAANAP//AAAAAAAAAAAOAP//AAAAAAAAAAAPAP//AAAAAAAAAAAPAP7/AAACAAAAAAAOAP7/AAAAAAAAAAAQAP//AAAAAAAAAAAQAP7/AAAAAAAAAAARAP7/AAACAAAAAAASAP7/AAAAAAAAAAARAP//AAAAAAAAAAASAP//AAAAAAAAAAAEAP3/AAACAAAAAAAFAP3/AAAAAAAAAAAGAP3/AAAAAAAAAAAHAP3/AAAAAAAAAAAIAP3/AAAAAAAAAAAJAP3/AAACAAAAAAAPAP3/AAACAAAAAAAQAP3/AAAAAAAAAAARAP3/AAACAAAAAAASAP3/AAAAAAAAAAATAP3/AAAAAAAAAAATAP7/AAAAAAAAAAATAP//AAAAAAAAAAAUAP//AAAAAAAAAAAUAP7/AAAAAAAAAAAUAP3/AAAAAAAAAAAJAPz/AAACAAAAAAAJAPv/AAACAAAAAAAPAPz/AAACAAAAAAARAPz/AAACAAAAAAARAPv/AAACAAAAAAARAPr/AAACAAAAAAANAP3/AQAAAAAAAAAMAP3/AQAAAAAAAAALAP3/AQAAAAAAAAAEAPz/AAACAAAAAAA=")
+
+[node name="Icefish" type="Sprite2D" parent="." unique_id=395027667]
+position = Vector2(219, -46)
+texture = ExtResource("3_1jo2q")
+
+[node name="entrance" type="Marker2D" parent="." unique_id=1622028318]
+position = Vector2(8, -40)
+
+[node name="exit" type="Marker2D" parent="." unique_id=571900516]
+position = Vector2(328, -55)
