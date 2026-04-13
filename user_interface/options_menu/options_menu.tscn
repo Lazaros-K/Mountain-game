@@ -91,6 +91,7 @@ grow_end = 0.0
 thickness = 6
 
 [node name="OptionsMenu" type="Control" unique_id=245634936]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

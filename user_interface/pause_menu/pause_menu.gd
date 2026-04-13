@@ -5,32 +5,36 @@ extends CanvasLayer
 
 func _ready() -> void:
 	visible = false
-	get_tree().paused = false
+	control.hide()
+	options_menu.hide()
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("pause"):
-		if get_tree().paused:
-			visible = false
-			get_tree().paused = false
-		else:
-			visible = true
-			get_tree().paused = true
+func _input(event):
+	if event.is_action_pressed("pause"):
+		open_pause();
+	
 
-func _on_resume_pressed() -> void:
+func open_pause() -> void:
+	visible = true
+	control.show()
+	get_tree().paused = true
+
+func close_pause() -> void:
+	control.hide()
 	visible = false
 	get_tree().paused = false
 
+func _on_resume_pressed() -> void:
+	close_pause()
 
 func _on_restart_pressed() -> void:
+	get_tree().paused = false
 	visible = false
 	get_tree().reload_current_scene()
 
-
 func _on_quit_pressed() -> void:
-	visible = false
 	get_tree().paused = false
+	visible = false
 	get_tree().change_scene_to_file("res://user_interface/main_menu/main_menu.tscn")
-
 
 func _on_options_pressed() -> void:
 	options_menu.open(control)
