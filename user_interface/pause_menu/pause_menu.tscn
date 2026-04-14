@@ -366,6 +366,7 @@ offset_right = 709.5
 offset_bottom = 515.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vbv2j")
 metadata/_edit_use_anchors_ = true
 

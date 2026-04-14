@@ -142,6 +142,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="OptionsMenu" parent="." unique_id=245634936 instance=ExtResource("3_hb773")]
+process_mode = 3
 layout_mode = 1
 
 [connection signal="pressed" from="MenuButtons/StartButton" to="." method="_on_start_pressed"]

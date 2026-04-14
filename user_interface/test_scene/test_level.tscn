@@ -1,27 +1,48 @@
-[gd_scene format=3 uid="uid://dl2vjjdao3001"]
+[gd_scene format=3 uid="uid://djn3e2i1hj1f6"]
 
-[ext_resource type="Texture2D" uid="uid://bjjqc77snl0yo" path="res://world_map/assets/grey_bg.png" id="1_2snsl"]
-[ext_resource type="PackedScene" uid="uid://l8segejsovjy" path="res://characters/test_character/charcter.tscn" id="2_g31v2"]
-[ext_resource type="PackedScene" uid="uid://c85j1xjfj4wlb" path="res://world_map/map_fragments/map_fragment_template.tscn" id="3_dne5a"]
+[ext_resource type="Script" uid="uid://kkby3fw218b1" path="res://world_map/tests/test_level_controller.gd" id="1_vsyy8"]
+[ext_resource type="Script" uid="uid://dwkfuqcdddpuk" path="res://world_map/level_system/level_generation/MapGenerator.gd" id="2_2lj4u"]
+[ext_resource type="PackedScene" uid="uid://db0p1cksthptd" path="res://world_map/map_fragmentation/map_fragments/snow1.tscn" id="3_nb1lg"]
 [ext_resource type="PackedScene" uid="uid://1bo5uyadwikm" path="res://user_interface/pause_menu/pause_menu.tscn" id="4_l4uq5"]
+[ext_resource type="PackedScene" uid="uid://66lwjkf163y7" path="res://user_interface/score/score_counter.tscn" id="4_ly405"]
+[ext_resource type="PackedScene" uid="uid://bjswl1om24gp" path="res://world_map/map_fragmentation/map_fragments/snow2.tscn" id="4_mlvgf"]
 [ext_resource type="PackedScene" uid="uid://d0o4v184kk7ph" path="res://user_interface/heart_bar/heart_bar.tscn" id="5_jj7ei"]
+[ext_resource type="PackedScene" uid="uid://p4uoycqrks1u" path="res://characters/test_character_2/charcter.tscn" id="5_rrmoa"]
+[ext_resource type="AudioStream" uid="uid://cu2gobt78ko2b" path="res://user_interface/assets/Fantasy Choir 1.wav" id="6_wr86y"]
+[ext_resource type="AudioStream" uid="uid://da6p5dwh47d2b" path="res://user_interface/assets/DST-TowerDefenseTheme.mp3" id="8_bt565"]
 
-[node name="test_level" type="Node2D" unique_id=392777027]
+[node name="TestLevel" type="Node2D" unique_id=1529079746]
+script = ExtResource("1_vsyy8")
 
-[node name="background" type="Sprite2D" parent="." unique_id=1342171354]
-texture = ExtResource("1_2snsl")
+[node name="MapGenerator" type="Node2D" parent="." unique_id=1589187120]
+position = Vector2(336, -48)
+script = ExtResource("2_2lj4u")
+fragments = Array[PackedScene]([ExtResource("3_nb1lg"), ExtResource("4_mlvgf")])
+use_custom_seed = true
+metadata/_custom_type_script = "uid://dwkfuqcdddpuk"
 
-[node name="test_character" parent="." unique_id=109764833 node_paths=PackedStringArray("current_map_fragment") instance=ExtResource("2_g31v2")]
-position = Vector2(-20, 36)
-current_map_fragment = NodePath("../TileMap")
+[node name="snow1" parent="." unique_id=2053287255 instance=ExtResource("3_nb1lg")]
+
+[node name="test_character" parent="." unique_id=109764833 instance=ExtResource("5_rrmoa")]
+position = Vector2(25, -68)
+speed = 1000.0
 fly = true
 
-[node name="Camera2D" type="Camera2D" parent="test_character" unique_id=874370524]
-zoom = Vector2(2.5, 2.5)
-
-[node name="TileMap" parent="." unique_id=578587331 instance=ExtResource("3_dne5a")]
+[node name="Camera2D" type="Camera2D" parent="test_character" unique_id=1065869612]
 
 [node name="HeartBar" parent="." unique_id=489534523 instance=ExtResource("5_jj7ei")]
 
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=486604446]
+stream = ExtResource("8_bt565")
+autoplay = true
+bus = &"Music"
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=537904613]
+stream = ExtResource("6_wr86y")
+autoplay = true
+bus = &"SFX"
+
 [node name="pause_menu" parent="." unique_id=273633992 instance=ExtResource("4_l4uq5")]
-visible = false
+
+[node name="ScoreCounter" parent="." unique_id=1120548581 instance=ExtResource("4_ly405")]
+test_character_path = NodePath("../test_character")

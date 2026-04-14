@@ -1,0 +1,13 @@
+class_name Tiles
+## A simple enum storing all tile IDs
+
+enum ID {
+	SNOW = 0,
+	REGOLITH,
+	SLATE,
+	ICE,
+	SPIKE_UP,
+	SPIKE_RIGHT,
+	SPIKE_DOWN,
+	SPIKE_LEFT
+}

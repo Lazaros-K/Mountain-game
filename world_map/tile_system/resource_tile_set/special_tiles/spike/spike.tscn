@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://hyofwk3u5b44"]
+
+[ext_resource type="Texture2D" uid="uid://bsquv8umnej4v" path="res://world_map/tile_system/resource_tile_set/special_tiles/spike/assets/regolith_spikes.png" id="1_xt8wf"]
+[ext_resource type="Script" uid="uid://cbogkxk34jt8d" path="res://common/hitbox_hurtbox_system/hitboxes/StaticHitBox.gd" id="2_jf5bs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xt8wf"]
+size = Vector2(12, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xeutw"]
+size = Vector2(14, 12)
+
+[node name="Spike" type="Sprite2D" unique_id=1842764490]
+texture = ExtResource("1_xt8wf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=623209431]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2094277517]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_xt8wf")
+
+[node name="StaticHitBox" type="Area2D" parent="." unique_id=472310077]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_jf5bs")
+hazard_name = "Spike!"
+damage = 1
+metadata/_custom_type_script = "uid://cbogkxk34jt8d"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticHitBox" unique_id=1901782256]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_xeutw")

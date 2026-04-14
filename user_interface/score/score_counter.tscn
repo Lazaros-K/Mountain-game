@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://66lwjkf163y7"]
+
+[ext_resource type="Script" uid="uid://djvtmoga6u12y" path="res://user_interface/score/score_counter.gd" id="1_c6o1r"]
+[ext_resource type="FontFile" uid="uid://do6g4882cwgd6" path="res://user_interface/assets/Jersey10-Regular.ttf" id="1_e2pxk"]
+
+[node name="ScoreCounter" type="CanvasLayer" unique_id=1120548581]
+script = ExtResource("1_c6o1r")
+
+[node name="Label" type="Label" parent="." unique_id=2065877154]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.5
+offset_right = 102.5
+offset_bottom = 61.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("1_e2pxk")
+theme_override_font_sizes/font_size = 50
+text = "default"
+horizontal_alignment = 1
+vertical_alignment = 1

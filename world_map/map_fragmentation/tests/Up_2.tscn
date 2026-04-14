@@ -1,0 +1,33 @@
+[gd_scene format=4 uid="uid://baj210573tmsh"]
+
+[ext_resource type="Script" uid="uid://ckd33y7jnpale" path="res://world_map/tile_system/TileMapManager.gd" id="1_gesxr"]
+[ext_resource type="TileSet" uid="uid://c16hhyu7xxg3r" path="res://world_map/tile_system/solid_layer_tile_set/solid_tile_set.tres" id="2_g4iop"]
+[ext_resource type="TileSet" uid="uid://bdcjvmyym5quv" path="res://world_map/tile_system/hazard_layer_tile_set/hazard_tile_set.tres" id="3_xlnbg"]
+
+[node name="TileMap" type="Node2D" unique_id=985964851 node_paths=PackedStringArray("solid_layer", "entrance_marker", "exit_marker")]
+script = ExtResource("1_gesxr")
+solid_layer = NodePath("solid_layer")
+entrance_marker = NodePath("EntrancePoint")
+exit_marker = NodePath("ExitPoint")
+metadata/_custom_type_script = "uid://ckd33y7jnpale"
+
+[node name="decoration_layer" type="TileMapLayer" parent="." unique_id=1538739578]
+tile_set = ExtResource("2_g4iop")
+
+[node name="hazard_layer" type="TileMapLayer" parent="." unique_id=1988344801]
+tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAQADAP7/AAAAAAAAAQA=")
+tile_set = ExtResource("3_xlnbg")
+
+[node name="solid_layer" type="TileMapLayer" parent="." unique_id=1284002577]
+tile_map_data = PackedByteArray("AAD6/wIAAAAAAAAAAAD7/wIAAAABAAAAAAD9/wEAAAABAAAAAAD+/wEAAAABAAAAAAAHAP7/AAABAAAAAAD8/wEAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAABAAAAAAABAP//AAAAAAAAAAACAP//AAABAAAAAAADAP//AAABAAAAAAAEAP7/AAAAAAAAAAAFAP7/AAABAAAAAAAGAP7/AAABAAAAAAAIAP7/AAACAAAAAAAAAP//AQAIAAMAAAADAP7/AQAIAAMAAAA=")
+tile_set = ExtResource("2_g4iop")
+
+[node name="solid_mock_layer" type="TileMapLayer" parent="." unique_id=1933851886]
+tile_map_data = PackedByteArray("AAD6/wMAAAAAAAEAAAD6/wQAAAAAAAIAAAD7/wMAAAABAAEAAAD7/wQAAAABAAIAAAD8/wIAAAABAAEAAAD8/wMAAAABAAEAAAD8/wQAAAABAAIAAAD9/wIAAAABAAEAAAD9/wMAAAABAAEAAAD9/wQAAAABAAIAAAD+/wIAAAABAAEAAAD+/wMAAAABAAEAAAD+/wQAAAACAAIAAAD//wEAAAABAAEAAAD//wIAAAABAAEAAAD//wMAAAACAAIAAAAAAAEAAAABAAEAAAAAAAIAAAABAAIAAAABAAAAAAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAACAAAAAAABAAEAAAACAAEAAAABAAEAAAACAAIAAAACAAIAAAADAAAAAAABAAEAAAADAAEAAAABAAIAAAAEAP//AAABAAEAAAAEAAAAAAABAAEAAAAEAAEAAAABAAIAAAAFAP//AAABAAEAAAAFAAAAAAABAAEAAAAFAAEAAAACAAIAAAAGAP//AAABAAEAAAAGAAAAAAABAAIAAAAHAP//AAABAAEAAAAHAAAAAAACAAIAAAAIAP//AAACAAIAAAA=")
+tile_set = ExtResource("2_g4iop")
+
+[node name="ExitPoint" type="Marker2D" parent="." unique_id=783395106]
+position = Vector2(144, -33)
+
+[node name="EntrancePoint" type="Marker2D" parent="." unique_id=1715591562]
+position = Vector2(-97, 31)
