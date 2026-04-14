@@ -4,11 +4,11 @@ extends Node
 
 @export var player: Player
 
-const ACTION_LEFT     := "left"
-const ACTION_RIGHT    := "right"
-const ACTION_JUMP     := "jump"
-const ACTION_AIR_UP   := "up"
-const ACTION_AIR_DOWN := "down"
+const ACTION_LEFT     :String= "left"
+const ACTION_RIGHT    :String= "right"
+const ACTION_JUMP     :String= "jump"
+const ACTION_AIR_UP   :String= "up"
+const ACTION_AIR_DOWN :String= "down"
 
 var _cmd: PlayerCommand = PlayerCommand.new()
 
@@ -23,9 +23,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		_e_latch = true
 
 func _physics_process(_delta: float) -> void:
-	if player == null:
-		push_warning("PlayerController: no player node assigned")
-		return
 	_read_input()
 	player.apply_command(_cmd)
 	# Clear latches after command is sent — one fire per press guaranteed.
@@ -49,7 +46,7 @@ func _read_input() -> void:
 	_cmd.wall_jump_left  = _q_latch
 	_cmd.wall_jump_right = _e_latch
 
-	var wall_side := player._wall_side
+	var wall_side :int= player._wall_side
 	if wall_side != 0:
 		_cmd.press_away_from_wall = (
 			(wall_side == -1 and _cmd.move_direction > 0.0) or

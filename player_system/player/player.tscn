@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://mgsa7rk4qi2v"]
 
-[ext_resource type="Script" uid="uid://cgb38tdclsu2q" path="res://player_system/player.gd" id="1_wy6mp"]
-[ext_resource type="Script" uid="uid://dy3h5kfjb2a5v" path="res://player_system/player_controller.gd" id="2_7hel7"]
+[ext_resource type="Script" uid="uid://cgb38tdclsu2q" path="res://player_system/player/player.gd" id="1_wy6mp"]
+[ext_resource type="Script" uid="uid://dy3h5kfjb2a5v" path="res://player_system/player/player_controller.gd" id="2_7hel7"]
 [ext_resource type="Texture2D" uid="uid://da5w4otyv637j" path="res://characters/test_character/assets/green_text.png" id="2_rxy2n"]
-[ext_resource type="Script" uid="uid://cpjllhoalath1" path="res://player_system/wall_grip_handler.gd" id="4_rxy2n"]
+[ext_resource type="Script" uid="uid://cpjllhoalath1" path="res://player_system/player/wall/wall_grip_handler.gd" id="4_rxy2n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epa1b"]
-size = Vector2(23, 21)
+size = Vector2(23, 22)
 
 [node name="Player" type="CharacterBody2D" unique_id=93465002]
 script = ExtResource("1_wy6mp")
@@ -17,10 +17,11 @@ scale = Vector2(1.9166666, 1.8333331)
 texture = ExtResource("2_rxy2n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=102656358]
-position = Vector2(17.5, 5.5)
+position = Vector2(17.5, 5)
 shape = SubResource("RectangleShape2D_epa1b")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1732409156]
+position = Vector2(17, 6)
 
 [node name="PlayerController" type="Node" parent="." unique_id=888086019 node_paths=PackedStringArray("player")]
 script = ExtResource("2_7hel7")
@@ -30,3 +31,9 @@ metadata/_custom_type_script = "uid://dy3h5kfjb2a5v"
 [node name="WallGripHandler" type="Node" parent="." unique_id=1994299814]
 script = ExtResource("4_rxy2n")
 metadata/_custom_type_script = "uid://cpjllhoalath1"
+
+[node name="grab_point" type="Marker2D" parent="." unique_id=889803236]
+position = Vector2(30, 5)
+
+[node name="feet_point" type="Marker2D" parent="." unique_id=1423412524]
+position = Vector2(17, 17)

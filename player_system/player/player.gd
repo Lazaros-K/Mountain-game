@@ -31,29 +31,40 @@ var _wall_side: int = 0
 var _regrip_timer: float = 0.0
 
 @onready var grip_handler: WallGripHandler = $WallGripHandler
+
+signal floor_tile_changed(tile_data: SolidTileData)
+signal wall_tile_changed(tile_data: SolidTileData)
+
+@export var current_map_fragment: TileMapManager
+@onready var grab_point: Marker2D = $grab_point
+@onready var feet_point: Marker2D = $feet_point
+
 #cmd is a filled playercommand describing what the player wants
 func _ready() -> void:
 	grip_handler.gripped.connect(_on_gripped)
-	grip_handler.grip_lost.connect(_on_grip_lost)
-	grip_handler.grip_state_changed.connect(_on_grip_state_changed)
+	print("map fragment: ", current_map_fragment)
+	print("feet_point: ", feet_point)
+	print("grab_point: ", grab_point)
 
 func _apply_grip_damping() -> void:
-	var dt := get_physics_process_delta_time()
-	var damping := grip_handler.get_velocity_damping()
+	var dt :float= get_physics_process_delta_time()
+	var damping :float= grip_handler.get_velocity_damping()
 	velocity.x = move_toward(velocity.x, 0.0, damping * dt)
 	velocity.y = move_toward(velocity.y, 0.0, damping * dt)
 
 func apply_command(cmd: PlayerCommand) ->void:
-	var dt := get_physics_process_delta_time()
+	var dt :float= get_physics_process_delta_time()
 	_on_floor = is_on_floor()
 	_update_wall_side()
+		
 	if _regrip_timer > 0.0:
 		_regrip_timer -= dt
 
-	var grip_state:= grip_handler.state
+	var grip_state:WallGripHandler.GripState= grip_handler.state
 	
 	match grip_state:
 		WallGripHandler.GripState.GRIPPED:
+			_read_wall_tile()
 			_apply_grip_damping()
 			if cmd.wall_jump_left:
 				_wall_jump_diagonal(-1)
@@ -84,10 +95,14 @@ func apply_command(cmd: PlayerCommand) ->void:
 			return
 			
 	if _on_floor:
+		_read_floor_tile()
 		_process_ground(cmd)
 	else:
 		_process_air(cmd)
+	
+	
 	velocity.y+= GRAVITY * get_physics_process_delta_time()
+	
 	if not _on_floor and is_on_wall() and _regrip_timer <= 0.0:
 		var surface_grip: float = _get_wall_surface_grip()
 		grip_handler.try_grip(_wall_side, surface_grip)
@@ -114,18 +129,15 @@ func _start_jump() -> void:
 	velocity.y=-(BASE_JUMP_VELOCITY+speed_bonus)
 
 func _process_air(cmd :PlayerCommand)->void:
-	var dt := get_physics_process_delta_time()
+	var dt :float= get_physics_process_delta_time()
 	if cmd.air_horizontal != 0.0:
-		var nudge := cmd.air_horizontal*AIR_CONTROL_FORCE*dt
+		var nudge :float= cmd.air_horizontal*AIR_CONTROL_FORCE*dt
 		velocity.x = clamp(velocity.x+nudge,-MAX_GROUND_SPEED-AIR_CONTROL_MAX_CONTRIBUTION,MAX_GROUND_SPEED+AIR_CONTROL_MAX_CONTRIBUTION)
-
-func _physics_process(delta: float) -> void:
-	pass
 
 func _update_wall_side() -> void:
 	if is_on_wall(): 
-		var normal := get_wall_normal()
-		_wall_side = -sign(normal.x) as int
+		var normal :Vector2= get_wall_normal()
+		_wall_side = int(signf(-normal.x))
 	else:
 		_wall_side = 0
 
@@ -144,7 +156,7 @@ func _wall_jump_side() -> void:
 	grip_handler.release_on_jump()
 	_regrip_timer = REGRIP_COOLDOWN
 
-func _on_gripped(data: WallData) -> void:
+func _on_gripped(_data: WallData) -> void:
 	velocity = Vector2.ZERO
 
 # Q (direction = -1) or E (direction = +1): diagonal jump ignoring wall side.
@@ -154,8 +166,19 @@ func _wall_jump_diagonal(direction: int) -> void:
 	grip_handler.release_on_jump()
 	_regrip_timer = REGRIP_COOLDOWN
 
-func _on_grip_lost() -> void:
-	pass
+func _read_floor_tile() -> void:
+	if not current_map_fragment:
+		return
+	var tile_data: SolidTileData = current_map_fragment.get_tile_data(feet_point.global_position)
+	if not tile_data:
+		return
+	print("floor friction: ", tile_data.friction)
 
-func _on_grip_state_changed(new_state: WallGripHandler.GripState) -> void:
-	pass
+func _read_wall_tile() -> void:
+	if not current_map_fragment:
+		return
+	var tile_data: SolidTileData = current_map_fragment.get_tile_data(grab_point.global_position)
+	print("wall tile_data: ", tile_data)
+	if not tile_data:
+		return
+	print("wall anchoring: ", tile_data.wall_anchoring)

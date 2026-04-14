@@ -18,7 +18,7 @@ const MAX_HOLD_TIME: float = 3.0
 const MIN_HOLD_TIME: float = 0.2
 #how quickly velocity cancels on grip contact
 const GRIP_VELOCITY_DAMPING: float = 8000.0
-const SLIDE_GRAVIRY_SCALE: float = 0.18
+const SLIDE_GRAVITY_SCALE: float = 0.18
 
 var state: GripState = GripState.NONE
 var current_wall: WallData = null
@@ -56,8 +56,8 @@ func try_grip(wall_side: int, surface_grip: float) -> void:
 	
 	if surface_grip < IMMEDIATE_SLIDE_THRESHOLD:
 		state = GripState.SLIDING
-		emit_signal("gripped",data)
-		emit_signal("grip_state_changed",GripState.GRIPPED)
+		emit_signal("gripped", data)
+		emit_signal("grip_state_changed", GripState.SLIDING)
 		return
 	
 	state = GripState.GRIPPED
@@ -98,3 +98,8 @@ func _release_grip() -> void:
 	_hold_timer = 0.0
 	emit_signal("grip_lost")
 	emit_signal("grip_state_changed", GripState.NONE)
+
+func get_gravity_scale() -> float:
+	if state == GripState.SLIDING:
+		return SLIDE_GRAVITY_SCALE
+	return 1.0
