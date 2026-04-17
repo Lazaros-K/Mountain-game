@@ -8,11 +8,11 @@ func _ready() -> void:
 	control.hide()
 	options_menu.hide()
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		open_pause();
 	
-
+# Pause level scene, show pause menu.
 func open_pause() -> void:
 	visible = true
 	control.show()
@@ -36,5 +36,6 @@ func _on_quit_pressed() -> void:
 	visible = false
 	get_tree().change_scene_to_file("res://user_interface/main_menu/main_menu.tscn")
 
+# Opens options menu and passes the contents of level scene.
 func _on_options_pressed() -> void:
 	options_menu.open(control)

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://d0o4v184kk7ph"]
 
+[ext_resource type="Script" uid="uid://cn8c0vjv5kdds" path="res://user_interface/heart_bar/heart_bar.gd" id="1_fh0v7"]
 [ext_resource type="Texture2D" uid="uid://bmetjw27se3vl" path="res://user_interface/assets/PHeart.png" id="1_r6e11"]
 
 [node name="HeartBar" type="CanvasLayer" unique_id=489534523]
+script = ExtResource("1_fh0v7")
 
 [node name="Control" type="Control" parent="." unique_id=1038778343]
 layout_mode = 3
@@ -11,9 +13,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=2080270205]
-layout_mode = 0
+layout_mode = 1
 offset_right = 167.0
 offset_bottom = 54.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Heart1" type="TextureRect" parent="Control/HBoxContainer" unique_id=632202438]
 layout_mode = 2

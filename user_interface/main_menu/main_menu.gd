@@ -5,14 +5,18 @@ extends Control
 
 @export var starting_scene: String
 
+# Make menu buttons visible on default.
 func _ready() -> void:
 	menu_buttons.visible = true
 
+# Start test level when Start pressed.
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file(starting_scene)
 
+# Open options menu when options button pressed.
 func _on_options_pressed() -> void:
 	options_menu.open(menu_buttons)
 
+# Exit the program when exit pressed.
 func _on_exit_pressed() -> void:
 	get_tree().quit()
