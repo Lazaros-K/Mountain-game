@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dy3h5kfjb2a5v" path="res://player_system/player/player_controller.gd" id="2_7hel7"]
 [ext_resource type="Texture2D" uid="uid://da5w4otyv637j" path="res://characters/test_character/assets/green_text.png" id="2_rxy2n"]
 [ext_resource type="Script" uid="uid://cpjllhoalath1" path="res://player_system/player/wall/wall_grip_handler.gd" id="4_rxy2n"]
+[ext_resource type="Script" uid="uid://o4t8kgxp817r" path="res://common/hitbox_hurtbox_system/HurtBox.gd" id="5_52ocs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epa1b"]
 size = Vector2(23, 22)
@@ -32,8 +33,19 @@ metadata/_custom_type_script = "uid://dy3h5kfjb2a5v"
 script = ExtResource("4_rxy2n")
 metadata/_custom_type_script = "uid://cpjllhoalath1"
 
-[node name="grab_point" type="Marker2D" parent="." unique_id=889803236]
+[node name="grab_point_right" type="Marker2D" parent="." unique_id=889803236]
 position = Vector2(30, 5)
 
 [node name="feet_point" type="Marker2D" parent="." unique_id=1423412524]
 position = Vector2(17, 17)
+
+[node name="grab_point_left" type="Marker2D" parent="." unique_id=780486081]
+position = Vector2(5, 5)
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=357653927]
+script = ExtResource("5_52ocs")
+metadata/_custom_type_script = "uid://o4t8kgxp817r"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox" unique_id=1458525459]
+position = Vector2(17.5, 5)
+shape = SubResource("RectangleShape2D_epa1b")

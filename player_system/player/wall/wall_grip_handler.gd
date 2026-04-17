@@ -30,6 +30,7 @@ func _ready() -> void:
 	if _player == null:
 		push_error("WallGripHandler must be a child of a player") 
 
+#counts down _hold_timer when LOOSENED and enters SLIDING when it expires
 func _physics_process(delta: float) ->void:
 	if state == GripState.NONE:
 		return
@@ -43,7 +44,9 @@ func _physics_process(delta: float) ->void:
 		_hold_timer-=delta
 		if _hold_timer<=0.0:
 			_enter_sliding()
-			
+
+#Attempts to start a grip: creates a WallData
+#Called by Player.apply_command when airborne and touching a wall
 func try_grip(wall_side: int, surface_grip: float) -> void:
 	if state != GripState.NONE:
 		return 
@@ -64,6 +67,8 @@ func try_grip(wall_side: int, surface_grip: float) -> void:
 	emit_signal("gripped",data)
 	emit_signal("grip_state_changed",GripState.GRIPPED)
 
+#Transitions GRIPPED → LOOSENED and calculates how long the player can hang before sliding
+#Called by Player.apply_command when cmd.press_away_from_wall is true
 func loosen_grip() -> void:
 	if state != GripState.GRIPPED:
 		return
@@ -78,18 +83,25 @@ func loosen_grip() -> void:
 	_hold_timer = lerp(MIN_HOLD_TIME, MAX_HOLD_TIME, t)
 	emit_signal("grip_state_changed", GripState.LOOSENED)
 
+#Immediately calls _release_grip to clear grip on any wall jump
 func release_on_jump() -> void:
 	_release_grip()
 
+#Returns GRIP_VELOCITY_DAMPING if GRIPPED or LOOSENED, otherwise 0
+#Called by Player._apply_grip_damping
 func get_velocity_damping() ->float:
 	if state == GripState.GRIPPED or state == GripState.LOOSENED:
 		return GRIP_VELOCITY_DAMPING
 	return 0.0
 
+#emits grip_state_changed
+#Called by _physics_process when the LOOSENED hold timer runs out
 func _enter_sliding() -> void:
 	state =GripState.SLIDING
 	emit_signal("grip_state_changed", GripState.SLIDING)
 
+#Resets state to NONE, clears current_wall and timer, emits grip_lost and grip_state_changed
+#Called by _physics_process and release_on_jump
 func _release_grip() -> void:
 	if state == GripState.NONE:
 		return
@@ -99,6 +111,8 @@ func _release_grip() -> void:
 	emit_signal("grip_lost")
 	emit_signal("grip_state_changed", GripState.NONE)
 
+#Returns SLIDE_GRAVITY_SCALE (0.18) when SLIDING, 1.0 otherwise
+#Called by Player.apply_command in the SLIDING branch
 func get_gravity_scale() -> float:
 	if state == GripState.SLIDING:
 		return SLIDE_GRAVITY_SCALE

@@ -15,20 +15,20 @@ var _cmd: PlayerCommand = PlayerCommand.new()
 # Latched in _unhandled_input so no press is ever dropped between physics ticks.
 var _q_latch: bool = false
 var _e_latch: bool = false
-
+# kaleitai aytomata apo to input system tis godot
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("wall_jump_left"):
 		_q_latch = true
 	if event.is_action_pressed("wall_jump_right"):
 		_e_latch = true
-
+#kaleitai aytomata se kathe frame 
 func _physics_process(_delta: float) -> void:
 	_read_input()
 	player.apply_command(_cmd)
 	# Clear latches after command is sent — one fire per press guaranteed.
 	_q_latch = false
 	_e_latch = false
-
+#arxikopoiei tis times kai lamvanei meta tis kanonikes times
 func _read_input() -> void:
 	_cmd.move_direction       = 0.0
 	_cmd.jump_pressed         = false
