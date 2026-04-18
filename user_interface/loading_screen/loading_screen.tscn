@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cljrixsj7lae4"]
+
+[ext_resource type="Script" uid="uid://bkl2cx2btyvlf" path="res://user_interface/loading_screen/loading_screen.gd" id="1_tkj33"]
+[ext_resource type="FontFile" uid="uid://do6g4882cwgd6" path="res://user_interface/assets/Jersey10-Regular.ttf" id="2_nw7rc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnb5f"]
+bg_color = Color(0.44705883, 0.67058825, 0.72156864, 1)
+
+[node name="LoadingScreen" type="Control" unique_id=399713014]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tkj33")
+
+[node name="Background" type="Panel" parent="." unique_id=64165611]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xnb5f")
+metadata/_edit_use_anchors_ = true
+
+[node name="Counter" type="Label" parent="." unique_id=1124950057]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = -48.75
+offset_right = 56.5
+offset_bottom = 48.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("2_nw7rc")
+theme_override_font_sizes/font_size = 120
+horizontal_alignment = 1
+vertical_alignment = 1

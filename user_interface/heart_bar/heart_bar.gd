@@ -27,9 +27,16 @@ func heal() -> void:
 	else:
 		pass
 
-#Simple heart bar. Press "T" to take damage, "H" to heal.
+# Goes to "game over" screen when character dies. Press "K" to test.
+func die() -> void:
+	global_score.score = global_score.score
+	get_tree().change_scene_to_file("res://user_interface/end_screen/end_screen.tscn")
+	
+# Simple heart bar. Press "T" to take damage, "H" to heal.
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
 		receive_damage()
 	if event.is_action_pressed("test2"):
 		heal()
+	if event.is_action_pressed("test3"):
+		die()

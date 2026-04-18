@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # Start test level when Start pressed.
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file(starting_scene)
+	get_tree().change_scene_to_file("res://user_interface/loading_screen/loading_screen.tscn")
 
 # Open options menu when options button pressed.
 func _on_options_pressed() -> void:
