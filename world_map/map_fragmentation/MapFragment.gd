@@ -26,7 +26,7 @@ func setup_dynamic_mask() -> void:
 	## Tilemap limits
 	var tile_size: Vector2i = tile_map.tile_set.tile_size
 	
-	var width: int = top_right_corner.x * tile_size.x
+	var width: int = (top_right_corner.x+1) * tile_size.x
 	var height: int = top_right_corner.y * tile_size.y
 	
 	## Area2D Creation

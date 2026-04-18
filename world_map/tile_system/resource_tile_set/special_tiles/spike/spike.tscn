@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://hyofwk3u5b44"]
 
-[ext_resource type="Texture2D" uid="uid://bsquv8umnej4v" path="res://world_map/tile_system/resource_tile_set/special_tiles/spike/assets/regolith_spikes.png" id="1_xt8wf"]
+[ext_resource type="Texture2D" uid="uid://di03au1p2mewh" path="res://world_map/tile_system/resource_tile_set/special_tiles/spike/assets/regolith-spikes.png" id="1_xt8wf"]
 [ext_resource type="Script" uid="uid://cbogkxk34jt8d" path="res://common/hitbox_hurtbox_system/hitboxes/StaticHitBox.gd" id="2_jf5bs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xt8wf"]
@@ -10,7 +10,9 @@ size = Vector2(12, 5)
 size = Vector2(14, 12)
 
 [node name="Spike" type="Sprite2D" unique_id=1842764490]
+z_index = -2
 texture = ExtResource("1_xt8wf")
+offset = Vector2(0, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=623209431]
 

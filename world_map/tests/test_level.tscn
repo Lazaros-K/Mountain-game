@@ -5,18 +5,22 @@
 [ext_resource type="Script" uid="uid://dwkfuqcdddpuk" path="res://world_map/level_system/level_generation/MapGenerator.gd" id="2_s2an8"]
 [ext_resource type="PackedScene" uid="uid://p4uoycqrks1u" path="res://characters/test_character_2/charcter.tscn" id="2_ug7fp"]
 [ext_resource type="PackedScene" uid="uid://bjswl1om24gp" path="res://world_map/map_fragmentation/map_fragments/snow2.tscn" id="3_s2an8"]
+[ext_resource type="PackedScene" uid="uid://bovsbn3t2a5a4" path="res://world_map/map_fragmentation/map_fragments/stone1.tscn" id="5_11ky7"]
+[ext_resource type="PackedScene" uid="uid://gplvvfm2g21" path="res://world_map/map_fragmentation/map_fragments/start_area.tscn" id="6_1bg5u"]
+[ext_resource type="PackedScene" uid="uid://co5gr4dauhcrv" path="res://world_map/map_fragmentation/map_fragments/stone2.tscn" id="6_uuaaa"]
 
 [node name="TestLevel" type="Node2D" unique_id=1529079746]
 script = ExtResource("1_qo30i")
 
 [node name="MapGenerator" type="Node2D" parent="." unique_id=1589187120]
-position = Vector2(336, -48)
+position = Vector2(323, -32)
 script = ExtResource("2_s2an8")
-fragments = Array[PackedScene]([ExtResource("1_wi5k0"), ExtResource("3_s2an8")])
+fragments = Array[PackedScene]([ExtResource("1_wi5k0"), ExtResource("3_s2an8"), ExtResource("5_11ky7"), ExtResource("6_uuaaa")])
 use_custom_seed = true
 metadata/_custom_type_script = "uid://dwkfuqcdddpuk"
 
-[node name="snow1" parent="." unique_id=2053287255 instance=ExtResource("1_wi5k0")]
+[node name="start" parent="." unique_id=2053287255 instance=ExtResource("6_1bg5u")]
+position = Vector2(-621, 144)
 
 [node name="test_character" parent="." unique_id=109764833 instance=ExtResource("2_ug7fp")]
 position = Vector2(25, -68)
@@ -24,3 +28,4 @@ speed = 1000.0
 fly = true
 
 [node name="Camera2D" type="Camera2D" parent="test_character" unique_id=1065869612]
+zoom = Vector2(2, 2)
