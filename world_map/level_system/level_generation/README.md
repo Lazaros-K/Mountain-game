@@ -1,21 +1,26 @@
 Brief Scripts Explanation: 
 
 {level_manager.md}
-	
-[generate_chunk_data()]: It pre-calculates what rooms to spawn and 
-exactly where they go. It saves this data in a dictionary (memory) 
-and destroys the temporary nodes so they don't consume RAM
 
-[update_chunk_window()]: It looks at the player's current index and creates 
-a "window" of active rooms (2 rooms ahead, 2 rooms behind)
+[generate_and_append_fragment()]: It picks a random room to spawn, 
+calculates exactly where it goes, and adds it directly to the active 
+scene. It no longer destroys temporary nodes as new rooms 
+are immediately appended to the level.
 
-[load_chunk()/unload_chunk()]: It instantiates (builds) the rooms 
-that are inside the window. If a room falls outside the window, 
-it gets destroyed to save memory.
+[update_chunk_window()]: It looks at the player's current fragment index
+αnd manages a "window" of active rooms (2 rooms ahead, 2 rooms behind)
+deciding which rooms need to be generated, loaded, or unloaded.
 
-Generated chunks are saved in the dictionary, the game will always 
-remember exactly what room was there if the player decides to turn back.
-A very simple seed system is also implemented at the start
+[load_chunk() / unload_chunk()]: When a room falls outside the window,
+unload_chunk() uses pack() to save its current state into the cache
+before removing it from the scene to save RAM. When the player 
+returns, load_chunk() restores that exact room from the 
+cache and reapplies its index
+
+Because chunks are packed and saved in the cache, the game doesn't 
+just remember what room was there, but its exact state if the player 
+decides to turn back. A very simple seed system is also 
+implemented at the start.
 
 {character.gd}
 
