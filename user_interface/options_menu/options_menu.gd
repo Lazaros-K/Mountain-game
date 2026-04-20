@@ -1,8 +1,7 @@
-extends Control
+extends abstract_options
 
 @onready var screen_mode_b: CheckButton = $Options/VBoxContainer/ScreenModeB
 
-var previous_menu: Control = null
 
 func _ready() -> void:
 	hide()

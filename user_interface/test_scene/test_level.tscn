@@ -4,12 +4,11 @@
 [ext_resource type="Script" uid="uid://dwkfuqcdddpuk" path="res://world_map/level_system/level_generation/MapGenerator.gd" id="2_2lj4u"]
 [ext_resource type="PackedScene" uid="uid://db0p1cksthptd" path="res://world_map/map_fragmentation/map_fragments/snow1.tscn" id="3_nb1lg"]
 [ext_resource type="PackedScene" uid="uid://1bo5uyadwikm" path="res://user_interface/pause_menu/pause_menu.tscn" id="4_l4uq5"]
-[ext_resource type="PackedScene" uid="uid://66lwjkf163y7" path="res://user_interface/score/score_counter.tscn" id="4_ly405"]
 [ext_resource type="PackedScene" uid="uid://bjswl1om24gp" path="res://world_map/map_fragmentation/map_fragments/snow2.tscn" id="4_mlvgf"]
-[ext_resource type="PackedScene" uid="uid://d0o4v184kk7ph" path="res://user_interface/heart_bar/heart_bar.tscn" id="5_jj7ei"]
 [ext_resource type="PackedScene" uid="uid://p4uoycqrks1u" path="res://characters/test_character_2/charcter.tscn" id="5_rrmoa"]
 [ext_resource type="AudioStream" uid="uid://cu2gobt78ko2b" path="res://user_interface/assets/Fantasy Choir 1.wav" id="6_wr86y"]
 [ext_resource type="AudioStream" uid="uid://da6p5dwh47d2b" path="res://user_interface/assets/DST-TowerDefenseTheme.mp3" id="8_bt565"]
+[ext_resource type="PackedScene" uid="uid://uhuavujbvdkq" path="res://user_interface/player_level_gui/player_gui.tscn" id="9_bt565"]
 
 [node name="TestLevel" type="Node2D" unique_id=1529079746]
 script = ExtResource("1_vsyy8")
@@ -30,8 +29,6 @@ fly = true
 
 [node name="Camera2D" type="Camera2D" parent="test_character" unique_id=1065869612]
 
-[node name="HeartBar" parent="." unique_id=489534523 instance=ExtResource("5_jj7ei")]
-
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=486604446]
 stream = ExtResource("8_bt565")
 autoplay = true
@@ -44,5 +41,5 @@ bus = &"SFX"
 
 [node name="pause_menu" parent="." unique_id=273633992 instance=ExtResource("4_l4uq5")]
 
-[node name="ScoreCounter" parent="." unique_id=1120548581 instance=ExtResource("4_ly405")]
-test_character_path = NodePath("../test_character")
+[node name="Player_GUI" parent="." unique_id=1831220666 node_paths=PackedStringArray("player_character") instance=ExtResource("9_bt565")]
+player_character = NodePath("../test_character")

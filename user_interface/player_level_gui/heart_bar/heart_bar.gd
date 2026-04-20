@@ -1,9 +1,9 @@
+class_name hearts
 extends CanvasLayer
 
 var hearts_list : Array[TextureRect]
 var hits_taken: int = 3; # We start in reverse only because we want the hearts to be removed from right to left.
 @onready var h_box_container: HBoxContainer = $Control/HBoxContainer
-
 
 func _ready() -> void:
 	show()
@@ -26,17 +26,3 @@ func heal() -> void:
 		hits_taken += 1
 	else:
 		pass
-
-# Goes to "game over" screen when character dies. Press "K" to test.
-func die() -> void:
-	global_score.score = global_score.score
-	get_tree().change_scene_to_file("res://user_interface/end_screen/end_screen.tscn")
-	
-# Simple heart bar. Press "T" to take damage, "H" to heal.
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("test"):
-		receive_damage()
-	if event.is_action_pressed("test2"):
-		heal()
-	if event.is_action_pressed("test3"):
-		die()

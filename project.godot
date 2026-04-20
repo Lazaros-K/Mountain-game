@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-global_score="*uid://dm7u4aw3m6uqa"
+GlobalScore="*uid://dm7u4aw3m6uqa"
 
 [debug]
 

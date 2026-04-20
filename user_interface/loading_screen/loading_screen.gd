@@ -4,9 +4,10 @@ extends Control
 var progress: Array = []
 var sceneName: String
 var scene_load_status: int = 0
+var uids: scene_uid
 
 func _ready() -> void:
-	sceneName = "res://user_interface/test_scene/test_level.tscn"
+	sceneName = uids.LEVEL
 	ResourceLoader.load_threaded_request(sceneName)
 
 func _process(_delta: float) -> void:
