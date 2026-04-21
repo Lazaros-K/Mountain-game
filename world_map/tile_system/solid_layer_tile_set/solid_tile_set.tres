@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" format=3 uid="uid://c16hhyu7xxg3r"]
+[gd_resource type="TileSet" format=3 uid="uid://dikcen2gg6ovk"]
 
 [ext_resource type="Texture2D" uid="uid://dh6js74dd2luq" path="res://world_map/tile_system/solid_layer_tile_set/assets/nature-paltformer-tileset-16x16.png" id="1_aqmco"]
 [ext_resource type="Texture2D" uid="uid://dpb0n723gnn83" path="res://world_map/tile_system/solid_layer_tile_set/assets/Damage tiles.png" id="2_n5st7"]

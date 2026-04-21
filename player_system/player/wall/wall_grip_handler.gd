@@ -14,36 +14,48 @@ enum GripState{
 }
 
 const IMMEDIATE_SLIDE_THRESHOLD: float = 35.0
+#how long the player stays completely still before starting to slide
+#scales with grip_power: strong surface = longer hold, weak = shorter
+#for GRIPPED state
+const MAX_GRIP_FATIGUE_TIME: float = 2.0
+const MIN_GRIP_FATIGUE_TIME: float = 0.8
+#for LOOSENED state
 const MAX_HOLD_TIME: float = 3.0
 const MIN_HOLD_TIME: float = 0.2
 #how quickly velocity cancels on grip contact
 const GRIP_VELOCITY_DAMPING: float = 8000.0
 const SLIDE_GRAVITY_SCALE: float = 0.18
+const FALL_GRAVITY_SCALE: float = 0.85
 
 var state: GripState = GripState.NONE
 var current_wall: WallData = null
-var _hold_timer: float = 0.0
-var _player: Player = null
+var hold_timer: float = 0.0
+var player: Player = null
+var grip_fatigue_timer: float = 0.0
 
 func _ready() -> void:
-	_player = get_parent() as Player
-	if _player == null:
+	player = get_parent() as Player
+	if player == null:
 		push_error("WallGripHandler must be a child of a player") 
 
 #counts down _hold_timer when LOOSENED and enters SLIDING when it expires
 func _physics_process(delta: float) ->void:
 	if state == GripState.NONE:
 		return
-	if _player.is_on_floor():
-		_release_grip()
+	if player.is_on_floor():
+		release_grip()
 		return
-	if not _player.is_on_wall():
-		_release_grip()
+	if not player.is_on_wall():
+		release_grip()
 		return
+	if state == GripState.GRIPPED:
+		grip_fatigue_timer -= delta
+		if grip_fatigue_timer <= 0.0:
+			loosen_grip()
 	if state == GripState.LOOSENED:
-		_hold_timer-=delta
-		if _hold_timer<=0.0:
-			_enter_sliding()
+		hold_timer-=delta
+		if hold_timer<=0.0:
+			enter_sliding()
 
 #Attempts to start a grip: creates a WallData
 #Called by Player.apply_command when airborne and touching a wall
@@ -64,6 +76,10 @@ func try_grip(wall_side: int, surface_grip: float) -> void:
 		return
 	
 	state = GripState.GRIPPED
+	#calculate how long the player stays still based on grip_power
+	var t: float = inverse_lerp(IMMEDIATE_SLIDE_THRESHOLD, 100.0, surface_grip)
+	t = clamp(t, 0.0, 1.0)
+	grip_fatigue_timer = lerp(MIN_GRIP_FATIGUE_TIME, MAX_GRIP_FATIGUE_TIME, t)
 	emit_signal("gripped",data)
 	emit_signal("grip_state_changed",GripState.GRIPPED)
 
@@ -80,40 +96,42 @@ func loosen_grip() -> void:
 		current_wall.grip_power
 	)
 	t = clamp(t,0.0,1.0)
-	_hold_timer = lerp(MIN_HOLD_TIME, MAX_HOLD_TIME, t)
+	hold_timer = lerp(MIN_HOLD_TIME, MAX_HOLD_TIME, t)
 	emit_signal("grip_state_changed", GripState.LOOSENED)
 
 #Immediately calls _release_grip to clear grip on any wall jump
 func release_on_jump() -> void:
-	_release_grip()
+	release_grip()
 
 #Returns GRIP_VELOCITY_DAMPING if GRIPPED or LOOSENED, otherwise 0
 #Called by Player._apply_grip_damping
 func get_velocity_damping() ->float:
-	if state == GripState.GRIPPED or state == GripState.LOOSENED:
+	if state == GripState.GRIPPED:
 		return GRIP_VELOCITY_DAMPING
 	return 0.0
 
 #emits grip_state_changed
 #Called by _physics_process when the LOOSENED hold timer runs out
-func _enter_sliding() -> void:
+func enter_sliding() -> void:
 	state =GripState.SLIDING
 	emit_signal("grip_state_changed", GripState.SLIDING)
 
 #Resets state to NONE, clears current_wall and timer, emits grip_lost and grip_state_changed
 #Called by _physics_process and release_on_jump
-func _release_grip() -> void:
+func release_grip() -> void:
 	if state == GripState.NONE:
 		return
 	state = GripState.NONE
 	current_wall = null
-	_hold_timer = 0.0
+	hold_timer = 0.0
 	emit_signal("grip_lost")
 	emit_signal("grip_state_changed", GripState.NONE)
 
-#Returns SLIDE_GRAVITY_SCALE (0.18) when SLIDING, 1.0 otherwise
-#Called by Player.apply_command in the SLIDING branch
+#returns the gravity scale for the current phase
+#LOOSENED = gentle slide, SLIDING = fast fall anything else = no wall gravity
 func get_gravity_scale() -> float:
-	if state == GripState.SLIDING:
+	if state == GripState.LOOSENED:
 		return SLIDE_GRAVITY_SCALE
-	return 1.0
+	if state == GripState.SLIDING:
+		return FALL_GRAVITY_SCALE
+	return 0.0

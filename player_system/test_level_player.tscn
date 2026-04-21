@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c57t1hgghv0ts"]
+
+[ext_resource type="Texture2D" uid="uid://bjjqc77snl0yo" path="res://world_map/assets/grey_bg.png" id="1_7e3lo"]
+[ext_resource type="PackedScene" uid="uid://bocwhctvjc32" path="res://player_system/player/player.tscn" id="3_aoyr2"]
+[ext_resource type="PackedScene" path="res://world_map/map_fragments/map_fragment_template.tscn" id="3_nuwp8"]
+
+[node name="test_level" type="Node2D" unique_id=392777027]
+
+[node name="background" type="Sprite2D" parent="." unique_id=1342171354]
+texture = ExtResource("1_7e3lo")
+
+[node name="TileMap" parent="." unique_id=578587331 instance=ExtResource("3_nuwp8")]
+
+[node name="Player" parent="." unique_id=93465002 node_paths=PackedStringArray("current_map_fragment") instance=ExtResource("3_aoyr2")]
+current_map_fragment = NodePath("../TileMap")

@@ -1,6 +1,6 @@
-[gd_resource type="TileSet" format=3 uid="uid://bdcjvmyym5quv"]
+[gd_resource type="TileSet" format=3 uid="uid://bifhlxr4d1xdt"]
 
-[ext_resource type="PackedScene" uid="uid://hyofwk3u5b44" path="res://world_map/tile_system/hazard_layer_tile_set/tiles/spike.tscn" id="1_l6p08"]
+[ext_resource type="PackedScene" path="res://world_map/tile_system/hazard_layer_tile_set/tiles/spike.tscn" id="1_l6p08"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_es8qo"]
 resource_name = "HazardTiles"
