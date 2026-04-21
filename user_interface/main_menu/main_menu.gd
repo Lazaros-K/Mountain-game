@@ -4,6 +4,7 @@ extends Control
 @onready var options_menu: Control = $OptionsMenu
 
 @export var starting_scene: String
+var uids: scene_uid
 
 # Make menu buttons visible on default.
 func _ready() -> void:
@@ -11,7 +12,7 @@ func _ready() -> void:
 
 # Start test level when Start pressed.
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file(starting_scene)
+	get_tree().change_scene_to_file(uids.LOADING_SCREEN)
 
 # Open options menu when options button pressed.
 func _on_options_pressed() -> void:
