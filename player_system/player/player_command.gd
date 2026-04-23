@@ -17,3 +17,4 @@ var press_away_from_wall: bool = false
 # Diagonal wall jumps: Q = up-left, E = up-right
 var wall_jump_left: bool = false
 var wall_jump_right: bool = false
+var up_pressed: bool = false

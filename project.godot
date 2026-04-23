@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mountain-game"
-run/main_scene="uid://d2hgef0evy68n"
+run/main_scene="uid://c57t1hgghv0ts"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

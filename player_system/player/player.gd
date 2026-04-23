@@ -19,6 +19,11 @@ const WALL_JUMP_SIDE_UP_VELOCITY: float = 200.0
 const WALL_JUMP_UP_VELOCITY: float = 340.0
 const WALL_JUMP_DIAG_X: float = 280.0
 const WALL_JUMP_DIAG_Y: float = 300.0
+
+
+const WALL_SAMPLE_X_OFFSET: float = 20.0
+const WALL_SAMPLE_HALF_HEIGHT: float = 24.0  # adjust to ~half your player's collision height
+const WALL_SAMPLE_COUNT: int = 3             # top, middle, bottom
 #player movement control in air
 const AIR_CONTROL_FORCE: float = 120.0
 #maximum speed the air control nudge can add in any direction.
@@ -50,6 +55,34 @@ func _ready() -> void:
 	print("feet_point: ", feet_point)
 	print("Left Grab Point: ", grab_point_left)
 	print("Right Grab Point: ", grab_point_right)
+func _get_wall_sample_pos() -> Vector2:
+	return global_position + Vector2(wall_side * WALL_SAMPLE_X_OFFSET, 0.0)
+	
+#Called by apply_command 
+# Now samples the actual tile instead of always returning 100.0
+func get_wall_surface_grip() -> float:
+	var tile_data := _get_wall_tile_data()
+	print("wall sample pos: ", global_position + Vector2(wall_side * WALL_SAMPLE_X_OFFSET, 0.0),
+		  " | tile found: ", tile_data != null,
+		  " | anchoring: ", tile_data.wall_anchoring if tile_data else "n/a")
+	if not tile_data:
+		return 100.0
+	return tile_data.wall_anchoring
+
+# Probes several Y positions along the player and returns the first valid tile found.
+# This ensures grip works no matter where the player overlaps the wall vertically.
+func _get_wall_tile_data() -> SolidTileData:
+	if not current_map_fragment:
+		return null
+	var x_offset := Vector2(wall_side * WALL_SAMPLE_X_OFFSET, 0.0)
+	for i in WALL_SAMPLE_COUNT:
+		var t := float(i) / float(WALL_SAMPLE_COUNT - 1)           # 0.0 … 1.0
+		var y_offset: float = lerp(-WALL_SAMPLE_HALF_HEIGHT, WALL_SAMPLE_HALF_HEIGHT, t)	
+		var sample_pos := global_position + x_offset + Vector2(0.0, y_offset)
+		var tile_data: SolidTileData = current_map_fragment.get_tile_data(sample_pos)
+		if tile_data:
+			return tile_data
+	return null
 
 #kills momentum on wall contact
 #Called inside apply_command for gripped loosened states
@@ -76,12 +109,10 @@ func apply_command(cmd: PlayerCommand) ->void:
 		WallGripHandler.GripState.GRIPPED:
 			read_wall_tile()
 			apply_grip_damping()
-			if cmd.wall_jump_left:
-				wall_jump_diagonal(-1)
-			elif cmd.wall_jump_right:
-				wall_jump_diagonal(1)
+			if cmd.up_pressed:
+				wall_jump_diagonal(-wall_side)
 			elif cmd.jump_pressed:
-				wall_jump_up()
+				wall_jump_up()                    # space/jump → straight up
 			elif cmd.press_away_from_wall:
 				grip_handler.loosen_grip()
 			move_and_slide()
@@ -155,10 +186,6 @@ func update_wall_side() -> void:
 	else:
 		wall_side = 0
 
-#Called by apply_command 
-func get_wall_surface_grip() -> float:
-	return 100.0
-
 #Called from apply_command
 #Zeroes X velocity, launches straight up at WALL_JUMP_UP_VELOCITY, releases grip, starts regrip cooldown
 func wall_jump_up() -> void:
@@ -200,17 +227,12 @@ func read_floor_tile() -> void:
 	print("floor friction scale: ", tile_friction_scale)
 	floor_tile_changed.emit(tile_data)
 
-#Called by apply_command when GRIPPED
+# Now also feeds the anchoring value into the grip handler each frame
 func read_wall_tile() -> void:
-	if not current_map_fragment:
-		print("read_wall_tile: no map fragment assigned")
-		return
-	var active_point: Marker2D = grab_point_left if wall_side == -1 else grab_point_right
-	var tile_data: SolidTileData = current_map_fragment.get_tile_data(active_point.global_position)
+	var tile_data := _get_wall_tile_data()
 	if not tile_data:
-		print("read_wall_tile: no tile data at ", active_point.global_position)
 		return
-	print("wall anchoring: ", tile_data.wall_anchoring)
+	grip_handler.update_grip_power(tile_data.wall_anchoring)
 	wall_tile_changed.emit(tile_data)
 
 func receive_hit_payload(payload: HitPayload) -> void:

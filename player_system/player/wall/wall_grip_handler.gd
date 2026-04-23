@@ -135,3 +135,14 @@ func get_gravity_scale() -> float:
 	if state == GripState.SLIDING:
 		return FALL_GRAVITY_SCALE
 	return 0.0
+	
+# Called by Player.read_wall_tile every frame while gripped.
+# Re-evaluates state whenever the tile's anchoring value changes.
+func update_grip_power(new_power: float) -> void:
+	if state == GripState.NONE or current_wall == null:
+		return
+	current_wall.grip_power = new_power
+	# Drop straight to SLIDING if the new tile can't hold the player
+	if new_power < IMMEDIATE_SLIDE_THRESHOLD:
+		if state == GripState.GRIPPED or state == GripState.LOOSENED:
+			enter_sliding()

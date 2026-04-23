@@ -32,6 +32,7 @@ func _physics_process(_delta: float) -> void:
 func _read_input() -> void:
 	_cmd.move_direction       = 0.0
 	_cmd.jump_pressed         = false
+	_cmd.up_pressed           = false   # ← add this reset
 	_cmd.air_horizontal       = 0.0
 	_cmd.air_vertical         = 0.0
 	_cmd.press_away_from_wall = false
@@ -40,13 +41,13 @@ func _read_input() -> void:
 
 	_cmd.move_direction = Input.get_axis(ACTION_LEFT, ACTION_RIGHT)
 	_cmd.jump_pressed   = Input.is_action_just_pressed(ACTION_JUMP)
+	_cmd.up_pressed     = Input.is_action_just_pressed(ACTION_AIR_UP)  # ← add this
 	_cmd.air_horizontal = _cmd.move_direction
 	_cmd.air_vertical   = Input.get_axis(ACTION_AIR_UP, ACTION_AIR_DOWN)
-
 	_cmd.wall_jump_left  = q_latch
 	_cmd.wall_jump_right = e_latch
 
-	var wall_side :int= player.wall_side
+	var wall_side: int = player.wall_side
 	if wall_side != 0:
 		_cmd.press_away_from_wall = (
 			(wall_side == -1 and _cmd.move_direction > 0.0) or
