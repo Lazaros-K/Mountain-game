@@ -1,26 +1,28 @@
 Brief Scripts Explanation: 
 
-{level_manager.md}
+{MapGenerator.gd}
 
-[generate_and_append_fragment()]: It picks a random room to spawn, 
-calculates exactly where it goes, and adds it directly to the active 
-scene. It no longer destroys temporary nodes as new rooms 
-are immediately appended to the level.
+[initialize_pool()]: For every room in the rooms we have it instantiates it
+by the amount of times we set, puts every duplicate far away, disables it,
+makes it invisible and adds it to the room_pool dictionary.
+
+[get_free_room()]: We input the room we want, searches for an available
+duplicate and returns the according duplicate
 
 [update_chunk_window()]: It looks at the player's current fragment index
 αnd manages a "window" of active rooms (2 rooms ahead, 2 rooms behind)
-deciding which rooms need to be generated, loaded, or unloaded.
+deciding which rooms need to be loaded or unloaded. It also indexes new rooms
 
-[load_chunk() / unload_chunk()]: When a room falls outside the window,
-unload_chunk() uses pack() to save its current state into the cache
-before removing it from the scene to save RAM. When the player 
-returns, load_chunk() restores that exact room from the 
-cache and reapplies its index
 
-Because chunks are packed and saved in the cache, the game doesn't 
-just remember what room was there, but its exact state if the player 
-decides to turn back. A very simple seed system is also 
-implemented at the start.
+[activate_fragment_from_pool()]: Activates specific fragment from the pool
+
+
+[generate_and_append_fragment()]: Checks if the room is in history, 
+generates random sequence, activates the random fragment from the pool
+and calculates the correct next position
+
+[unload_chunk()]: When a room falls outside the window, it 
+erases it from active_fragments and disables it and makes it invisible
 
 {character.gd}
 
