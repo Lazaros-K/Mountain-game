@@ -13,7 +13,7 @@
 script = ExtResource("1_qo30i")
 
 [node name="MapGenerator" type="Node2D" parent="." unique_id=1589187120]
-position = Vector2(323, -32)
+position = Vector2(-3, -14)
 script = ExtResource("2_s2an8")
 rooms = Array[PackedScene]([ExtResource("3_uuaaa"), ExtResource("4_bkmkx"), ExtResource("6_kt865"), ExtResource("7_t45rr")])
 use_custom_seed = true

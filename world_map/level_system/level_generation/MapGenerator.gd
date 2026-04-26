@@ -6,20 +6,21 @@ const POOL_STORAGE_POS: Vector2 = Vector2(-10000, -10000)
 
 @export var rooms: Array[PackedScene] 
 
-@export var chunks_ahead: int = 2
-@export var chunks_behind: int = 2
+@export var chunks_ahead: int = 1
+@export var chunks_behind: int = 1
 
 @export var use_custom_seed: bool = false
 @export var level_seed: int = 80085
 
 
 # Object Pooling Variables
-@export var pool_size_per_room: int = 3 
+var pool_size_per_room: int = 3 
 var room_pool: Dictionary[PackedScene, Array] = {}
 
 var active_fragments: Dictionary[int, MapFragment] = {} 
-var fragment_history: Dictionary[int, PackedScene] = {}
-var fragment_positions: Dictionary[int, Vector2] = {}
+
+## First array index has the scene, second has spawn position
+var fragment_history: Dictionary[int, Array] = {}
 
 var next_spawn_position: Vector2 = Vector2.ZERO
 var highest_generated_index: int = -1
@@ -38,36 +39,22 @@ func _ready() -> void:
 	
 	for i: int in range(chunks_ahead + 1):
 		generate_and_append_fragment(i)
-		
+	
 	update_chunk_window(0)
 
-# Instatiates all fragments, puts them far away and disables them
+## Instatiates all fragments, puts them far away and disables them
 func initialize_pool() -> void:
 	
 	for room_scene: PackedScene in rooms:
 		room_pool[room_scene] = []
 		
 		for i: int in range(pool_size_per_room):
-			var new_room: MapFragment = room_scene.instantiate() as MapFragment
+			var new_fragment: MapFragment = room_scene.instantiate() as MapFragment
 			
-			# Disabling for performance
-			new_room.global_position = POOL_STORAGE_POS
-			new_room.visible = false
-			new_room.process_mode = Node.PROCESS_MODE_DISABLED
-			
-			add_child(new_room) 
-			room_pool[room_scene].append(new_room)
-
-# Finds a free duplicate room from the pool
-func get_free_room(room_scene: PackedScene) -> MapFragment:
-	
-	var instances: Array = room_pool[room_scene]
-	for item: MapFragment in instances:
-		var room: MapFragment = item as MapFragment
-		
-		if not room.visible:
-			return room
-	return null;
+			# Disable and shi
+			unload_fragment(new_fragment)
+			add_child(new_fragment)
+			room_pool[room_scene].append(new_fragment)
 
 func update_chunk_window(current_player_index: int) -> void:
 	var start_index: int = max(0, current_player_index - chunks_behind)
@@ -81,61 +68,64 @@ func update_chunk_window(current_player_index: int) -> void:
 	# Room loading inside window
 	for i: int in range(start_index, end_index + 1):
 		if not active_fragments.has(i):
-			if fragment_history.has(i):
-				activate_fragment_from_pool(i, fragment_history[i])
-			
+			@warning_ignore("unsafe_cast")
+			activate_fragment_from_pool(i, fragment_history[i][0] as PackedScene)
+	
 	# Room unloading outside window
 	for loaded_index: int in active_fragments.keys().duplicate():
 		if loaded_index < start_index or loaded_index > end_index:
-			unload_chunk(loaded_index)
-
-
-func activate_fragment_from_pool(index: int, scene: PackedScene) -> void:
-	var room: MapFragment = get_free_room(scene)
-	
-	room.fragment_index = index
-	room.visible = true
-	# Basically enables the room
-	room.process_mode = Node.PROCESS_MODE_INHERIT
-	
-	# Checks if the pos was already calculated and applies it if so
-	if fragment_positions.has(index):
-		room.global_position = fragment_positions[index]
-
-	active_fragments[index] = room
+			unload_fragment(active_fragments[loaded_index])
+			active_fragments.erase(loaded_index)
 
 func generate_and_append_fragment(index: int) -> void:
-	if fragment_history.has(index):
-		return
-		
-	var room_scene: PackedScene = rooms.pick_random()
-	fragment_history[index] = room_scene
 	
-	# Runs for new fragments
-	activate_fragment_from_pool(index, room_scene)
+	var fragment_scene: PackedScene = rooms.pick_random()
 	
-	# Calculate next spawn pos
-	var new_room: MapFragment = active_fragments[index]
-	var spawn_pos: Vector2 = next_spawn_position
-	spawn_pos -= new_room.entrance_marker.position
-	new_room.global_position = spawn_pos
-	next_spawn_position = spawn_pos + new_room.exit_marker.position
+	# get fragment based on scene
+	var fragment: MapFragment = get_free_room(fragment_scene)
+	var fragment_pos: Vector2 = next_spawn_position - fragment.get_entrance_pos()
+	next_spawn_position = fragment_pos + fragment.get_exit_pos()
 	
-	# Save that pos
-	fragment_positions[index] = spawn_pos
+	# set up fragment
+	fragment.fragment_index = index
+	fragment.position = fragment_pos
+	fragment_history[index] = [fragment_scene,fragment_pos]
 	
-	highest_generated_index = max(highest_generated_index, index)
+	# load fragment
+	load_fragment(fragment)
+	active_fragments[index] = fragment
+	
+	highest_generated_index = index
 
-func unload_chunk(index: int) -> void:
-	if active_fragments.has(index):
-		var room: MapFragment = active_fragments[index]
-		
-		room.visible = false
-		room.process_mode = Node.PROCESS_MODE_DISABLED
-		
-		active_fragments.erase(index)
-		
-# This should connected with the signal map_fragment_changed
-# from CharacterMapPoint 
+# Finds a free duplicate room from the pool
+func get_free_room(room_scene: PackedScene) -> MapFragment:
+	
+	var instances: Array = room_pool[room_scene]
+	for item: MapFragment in instances:
+		if not item.visible:
+			return item
+	return null;
+
+func activate_fragment_from_pool(index: int, scene: PackedScene) -> void:
+	var fragment: MapFragment = get_free_room(scene)
+	
+	# add fragment to scene and set its position
+	load_fragment(fragment)
+	fragment.fragment_index = index
+	fragment.position = fragment_history[index][1]
+	
+	# add fragment to active_fragments list
+	active_fragments[index] = fragment
+
+func unload_fragment(fragment: MapFragment) -> void:
+	fragment.hide()
+	fragment.position = POOL_STORAGE_POS
+	fragment.process_mode = Node.PROCESS_MODE_DISABLED
+
+func load_fragment(fragment: MapFragment) -> void :
+	fragment.process_mode = Node.PROCESS_MODE_INHERIT
+	fragment.show()
+
+## Signal called function for updating the map
 func _on_character_map_fragment_changed(new_index: int) -> void:
 	update_chunk_window.call_deferred(new_index)

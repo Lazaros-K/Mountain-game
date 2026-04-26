@@ -13,7 +13,15 @@ extends Node2D
 
 var fragment_index: int
 
+var entrance_pos: Vector2
+var exit_pos: Vector2
+
 func _ready() -> void:
+	# calculate positions
+	var tile_pos: Vector2i = tile_map.local_to_map(entrance_marker.position)
+	entrance_pos = tile_map.tile_set.tile_size * tile_pos
+	tile_pos = tile_map.local_to_map(exit_marker.position) + Vector2i(1,0)
+	exit_pos = tile_map.tile_set.tile_size * tile_pos
 	
 	if not tile_map or not entrance_marker or not exit_marker or top_right_corner == Vector2i.ZERO:
 		printerr("Map Fragment isn't set up properly")
@@ -54,9 +62,7 @@ func get_tile_data(actor_position: Vector2) -> TerrainTileData :
 	return tile_map.get_tile_data(map_position)
 
 func get_entrance_pos() -> Vector2 :
-	var tile_pos: Vector2i = tile_map.local_to_map(entrance_marker.position)
-	return tile_map.tile_set.tile_size * tile_pos
+	return entrance_pos
 
 func get_exit_pos() -> Vector2 :
-	var tile_pos: Vector2i = tile_map.local_to_map(exit_marker.position) + Vector2i(1,0)
-	return tile_map.tile_set.tile_size * tile_pos
+	return exit_pos
