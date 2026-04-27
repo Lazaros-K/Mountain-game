@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d2sn2mxe1y3el"]
+
+[ext_resource type="Script" uid="uid://kkby3fw218b1" path="res://world_map/level_controller.gd" id="1_bdt0x"]
+[ext_resource type="Script" uid="uid://dwkfuqcdddpuk" path="res://world_map/level_system/level_generation/MapGenerator.gd" id="2_odsqf"]
+[ext_resource type="PackedScene" uid="uid://db0p1cksthptd" path="res://world_map/map_fragmentation/map_fragments/snow1.tscn" id="3_pkval"]
+[ext_resource type="PackedScene" uid="uid://bjswl1om24gp" path="res://world_map/map_fragmentation/map_fragments/snow2.tscn" id="4_i8in2"]
+[ext_resource type="PackedScene" uid="uid://bovsbn3t2a5a4" path="res://world_map/map_fragmentation/map_fragments/stone1.tscn" id="5_o06kw"]
+[ext_resource type="PackedScene" uid="uid://co5gr4dauhcrv" path="res://world_map/map_fragmentation/map_fragments/stone2.tscn" id="6_r6eo7"]
+[ext_resource type="PackedScene" uid="uid://gplvvfm2g21" path="res://world_map/map_fragmentation/map_fragments/start_area.tscn" id="7_qme1k"]
+[ext_resource type="PackedScene" uid="uid://p4uoycqrks1u" path="res://characters/test_character_2/charcter.tscn" id="8_n8s4p"]
+[ext_resource type="PackedScene" uid="uid://s0x0ow7j3n66" path="res://common/background/paralax_background.tscn" id="11_odsqf"]
+
+[node name="TestLevel" type="Node2D" unique_id=1529079746]
+script = ExtResource("1_bdt0x")
+
+[node name="MapGenerator" type="Node2D" parent="." unique_id=1589187120]
+position = Vector2(-3, -14)
+script = ExtResource("2_odsqf")
+rooms = Array[PackedScene]([ExtResource("3_pkval"), ExtResource("4_i8in2"), ExtResource("5_o06kw"), ExtResource("6_r6eo7")])
+use_custom_seed = true
+metadata/_custom_type_script = "uid://dwkfuqcdddpuk"
+
+[node name="start" parent="." unique_id=2053287255 instance=ExtResource("7_qme1k")]
+position = Vector2(-947, 162)
+
+[node name="test_character" parent="." unique_id=109764833 instance=ExtResource("8_n8s4p")]
+position = Vector2(-405, -60)
+speed = 250.0
+fly = true
+
+[node name="Camera2D" type="Camera2D" parent="test_character" unique_id=1065869612]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
+
+[node name="Paralax" parent="." unique_id=276833612 instance=ExtResource("11_odsqf")]
