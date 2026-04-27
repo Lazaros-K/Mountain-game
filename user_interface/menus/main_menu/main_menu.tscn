@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bmca0xk372xs7"]
 
 [ext_resource type="FontFile" uid="uid://do6g4882cwgd6" path="res://user_interface/assets/Jersey10-Regular.ttf" id="1_1aipp"]
-[ext_resource type="Script" uid="uid://cqax750jmv2p4" path="res://user_interface/main_menu/main_menu.gd" id="1_xqlja"]
-[ext_resource type="PackedScene" uid="uid://d3araif76l65g" path="res://user_interface/options_menu/options_menu.tscn" id="3_hb773"]
+[ext_resource type="Script" uid="uid://cqax750jmv2p4" path="res://user_interface/menus/main_menu/main_menu.gd" id="1_xqlja"]
+[ext_resource type="PackedScene" uid="uid://d3araif76l65g" path="res://user_interface/menus/options_menu/options_menu.tscn" id="3_hb773"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqlja"]
 bg_color = Color(0.44640002, 0.66984004, 0.72, 1)

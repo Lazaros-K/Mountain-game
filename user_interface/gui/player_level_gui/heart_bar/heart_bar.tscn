@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d0o4v184kk7ph"]
 
-[ext_resource type="Script" uid="uid://cn8c0vjv5kdds" path="res://user_interface/player_level_gui/heart_bar/heart_bar.gd" id="1_fh0v7"]
+[ext_resource type="Script" uid="uid://cn8c0vjv5kdds" path="res://user_interface/gui/player_level_gui/heart_bar/heart_bar.gd" id="1_fh0v7"]
 [ext_resource type="Texture2D" uid="uid://bmetjw27se3vl" path="res://user_interface/assets/PHeart.png" id="1_r6e11"]
 
 [node name="HeartBar" type="CanvasLayer" unique_id=489534523]

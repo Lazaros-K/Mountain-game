@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://kkby3fw218b1" path="res://world_map/tests/test_level_controller.gd" id="1_vsyy8"]
 [ext_resource type="Script" uid="uid://dwkfuqcdddpuk" path="res://world_map/level_system/level_generation/MapGenerator.gd" id="2_2lj4u"]
 [ext_resource type="PackedScene" uid="uid://db0p1cksthptd" path="res://world_map/map_fragmentation/map_fragments/snow1.tscn" id="3_nb1lg"]
-[ext_resource type="PackedScene" uid="uid://1bo5uyadwikm" path="res://user_interface/pause_menu/pause_menu.tscn" id="4_l4uq5"]
+[ext_resource type="PackedScene" uid="uid://1bo5uyadwikm" path="res://user_interface/menus/pause_menu/pause_menu.tscn" id="4_l4uq5"]
 [ext_resource type="PackedScene" uid="uid://bjswl1om24gp" path="res://world_map/map_fragmentation/map_fragments/snow2.tscn" id="4_mlvgf"]
 [ext_resource type="PackedScene" uid="uid://p4uoycqrks1u" path="res://characters/test_character_2/charcter.tscn" id="5_rrmoa"]
 [ext_resource type="AudioStream" uid="uid://cu2gobt78ko2b" path="res://user_interface/assets/Fantasy Choir 1.wav" id="6_wr86y"]
 [ext_resource type="AudioStream" uid="uid://da6p5dwh47d2b" path="res://user_interface/assets/DST-TowerDefenseTheme.mp3" id="8_bt565"]
-[ext_resource type="PackedScene" uid="uid://uhuavujbvdkq" path="res://user_interface/player_level_gui/player_gui.tscn" id="9_bt565"]
+[ext_resource type="PackedScene" uid="uid://uhuavujbvdkq" path="res://user_interface/gui/player_level_gui/player_gui.tscn" id="9_bt565"]
 
 [node name="TestLevel" type="Node2D" unique_id=1529079746]
 script = ExtResource("1_vsyy8")
@@ -24,7 +24,6 @@ metadata/_custom_type_script = "uid://dwkfuqcdddpuk"
 
 [node name="test_character" parent="." unique_id=109764833 instance=ExtResource("5_rrmoa")]
 position = Vector2(25, -68)
-speed = 1000.0
 fly = true
 
 [node name="Camera2D" type="Camera2D" parent="test_character" unique_id=1065869612]
@@ -32,12 +31,10 @@ fly = true
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=486604446]
 stream = ExtResource("8_bt565")
 autoplay = true
-bus = &"Music"
 
 [node name="SFX" type="AudioStreamPlayer" parent="." unique_id=537904613]
 stream = ExtResource("6_wr86y")
 autoplay = true
-bus = &"SFX"
 
 [node name="pause_menu" parent="." unique_id=273633992 instance=ExtResource("4_l4uq5")]
 

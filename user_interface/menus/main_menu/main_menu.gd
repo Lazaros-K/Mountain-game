@@ -1,7 +1,7 @@
 extends Control
 
 @onready var menu_buttons: VBoxContainer = $MenuButtons
-@onready var options_menu: Control = $OptionsMenu
+@onready var options_menu: Submenu = $OptionsMenu
 
 @export var starting_scene: String
 var uids: scene_uid

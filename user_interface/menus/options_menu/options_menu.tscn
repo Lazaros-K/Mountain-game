@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://d3araif76l65g"]
 
 [ext_resource type="FontFile" uid="uid://do6g4882cwgd6" path="res://user_interface/assets/Jersey10-Regular.ttf" id="1_esvj4"]
-[ext_resource type="Script" uid="uid://c0604if543rim" path="res://user_interface/options_menu/options_menu.gd" id="1_uad7m"]
-[ext_resource type="Script" uid="uid://c4f5uxmt0hpj8" path="res://user_interface/options_menu/screen_mode_b.gd" id="2_uad7m"]
-[ext_resource type="Script" uid="uid://dsoxjlvsaxtng" path="res://user_interface/options_menu/audio/music_slider.gd" id="4_nqum7"]
-[ext_resource type="Script" uid="uid://ctmp7mpyvdvqo" path="res://user_interface/options_menu/audio/sfx_slider.gd" id="5_065b5"]
+[ext_resource type="Script" uid="uid://c0604if543rim" path="res://user_interface/menus/options_menu/options_menu.gd" id="1_uad7m"]
+[ext_resource type="Script" uid="uid://c4f5uxmt0hpj8" path="res://user_interface/menus/options_menu/screen_mode_b.gd" id="2_uad7m"]
+[ext_resource type="Script" uid="uid://dsoxjlvsaxtng" path="res://user_interface/menus/options_menu/audio/music_slider.gd" id="4_nqum7"]
+[ext_resource type="Script" uid="uid://ctmp7mpyvdvqo" path="res://user_interface/menus/options_menu/audio/sfx_slider.gd" id="5_065b5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uad7m"]
 bg_color = Color(0.44705883, 0.67058825, 0.72156864, 1)

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var control: Control = $Control
-@onready var options_menu: Control = $OptionsMenu
+@onready var options_menu: Submenu = $OptionsMenu
 
 func _ready() -> void:
 	visible = false
@@ -34,7 +34,7 @@ func _on_restart_pressed() -> void:
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
 	visible = false
-	get_tree().change_scene_to_file("res://user_interface/main_menu/main_menu.tscn")
+	get_tree().change_scene_to_file(scene_uid.MAIN_MENU)
 
 # Opens options menu and passes the contents of level scene.
 func _on_options_pressed() -> void:

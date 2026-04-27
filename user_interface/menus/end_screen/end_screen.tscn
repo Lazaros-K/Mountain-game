@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cgnnd4gcqgq78"]
 
 [ext_resource type="FontFile" uid="uid://do6g4882cwgd6" path="res://user_interface/assets/Jersey10-Regular.ttf" id="1_0tjr2"]
-[ext_resource type="Script" uid="uid://bf4wsmahclqx8" path="res://user_interface/end_screen/end_screen.gd" id="1_vtfa8"]
+[ext_resource type="Script" uid="uid://bf4wsmahclqx8" path="res://user_interface/menus/end_screen/end_screen.gd" id="1_vtfa8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtfa8"]
 bg_color = Color(0.44705883, 0.67058825, 0.72156864, 1)

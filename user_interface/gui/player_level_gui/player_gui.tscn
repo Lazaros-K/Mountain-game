@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://uhuavujbvdkq"]
 
-[ext_resource type="Script" uid="uid://c4h06esdmfi2x" path="res://user_interface/player_level_gui/player_level_gui.gd" id="1_uuw4s"]
-[ext_resource type="PackedScene" uid="uid://d0o4v184kk7ph" path="res://user_interface/player_level_gui/heart_bar/heart_bar.tscn" id="2_q14di"]
-[ext_resource type="PackedScene" uid="uid://66lwjkf163y7" path="res://user_interface/player_level_gui/score/score_counter.tscn" id="3_xa1c5"]
+[ext_resource type="Script" uid="uid://c4h06esdmfi2x" path="res://user_interface/gui/player_level_gui/player_level_gui.gd" id="1_uuw4s"]
+[ext_resource type="PackedScene" uid="uid://d0o4v184kk7ph" path="res://user_interface/gui/player_level_gui/heart_bar/heart_bar.tscn" id="2_q14di"]
+[ext_resource type="PackedScene" uid="uid://66lwjkf163y7" path="res://user_interface/gui/player_level_gui/score/score_counter.tscn" id="3_xa1c5"]
 
 [node name="Player_GUI" type="Control" unique_id=1831220666]
 layout_mode = 3
