@@ -1,21 +1,28 @@
 Brief Scripts Explanation: 
 
-{level_manager.md}
-	
-[generate_chunk_data()]: It pre-calculates what rooms to spawn and 
-exactly where they go. It saves this data in a dictionary (memory) 
-and destroys the temporary nodes so they don't consume RAM
+{MapGenerator.gd}
 
-[update_chunk_window()]: It looks at the player's current index and creates 
-a "window" of active rooms (2 rooms ahead, 2 rooms behind)
+[initialize_pool()]: For every room in the rooms we have it instantiates it
+by the amount of times we set, puts every duplicate far away, disables it,
+makes it invisible and adds it to the room_pool dictionary.
 
-[load_chunk()/unload_chunk()]: It instantiates (builds) the rooms 
-that are inside the window. If a room falls outside the window, 
-it gets destroyed to save memory.
+[get_free_room()]: We input the room we want, searches for an available
+duplicate and returns the according duplicate
 
-Generated chunks are saved in the dictionary, the game will always 
-remember exactly what room was there if the player decides to turn back.
-A very simple seed system is also implemented at the start
+[update_chunk_window()]: It looks at the player's current fragment index
+αnd manages a "window" of active rooms (2 rooms ahead, 2 rooms behind)
+deciding which rooms need to be loaded or unloaded. It also indexes new rooms
+
+
+[activate_fragment_from_pool()]: Activates specific fragment from the pool
+
+
+[generate_and_append_fragment()]: Checks if the room is in history, 
+generates random sequence, activates the random fragment from the pool
+and calculates the correct next position
+
+[unload_chunk()]: When a room falls outside the window, it 
+erases it from active_fragments and disables it and makes it invisible
 
 {character.gd}
 

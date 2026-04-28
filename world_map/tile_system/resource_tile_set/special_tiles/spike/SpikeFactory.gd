@@ -36,7 +36,7 @@ func create_special_tile(special_id: int, operational_tilemap: TileMapLayer, pos
 	var spike: Sprite2D = spike_tile_cache["spike"].instantiate()
 	
 	if terrain_id == ResourceTiles.TERRAIN.SNOW or terrain_id == ResourceTiles.TERRAIN.ICE :
-		spike.texture = load("uid://dpr4vlqodyekh")
+		spike.texture = load("uid://dg6r1pgek32xm")
 	elif terrain_id == ResourceTiles.TERRAIN.SLATE :
 		spike.texture = load("uid://n7rm4wuas7tb")
 	

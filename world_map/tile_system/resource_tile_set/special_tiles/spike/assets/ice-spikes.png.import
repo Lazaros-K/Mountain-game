@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0a23wtxxq4kl"
-path="res://.godot/imported/ice-block-dual-tileset.png-e0a9866a58dc4c6dbfb3b24d1606d50e.ctex"
+uid="uid://dg6r1pgek32xm"
+path="res://.godot/imported/ice-spikes.png-a917d3fe984138c52fc26913a60501e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world_map/tile_system/resource_tile_set/assets/ice-block-dual-tileset.png"
-dest_files=["res://.godot/imported/ice-block-dual-tileset.png-e0a9866a58dc4c6dbfb3b24d1606d50e.ctex"]
+source_file="res://world_map/tile_system/resource_tile_set/special_tiles/spike/assets/ice-spikes.png"
+dest_files=["res://.godot/imported/ice-spikes.png-a917d3fe984138c52fc26913a60501e5.ctex"]
 
 [params]
 

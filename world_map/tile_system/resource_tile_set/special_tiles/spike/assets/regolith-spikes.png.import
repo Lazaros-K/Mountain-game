@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsquv8umnej4v"
-path="res://.godot/imported/regolith_spikes.png-df20ff5d4236532b4d8544edb7622e96.ctex"
+uid="uid://di03au1p2mewh"
+path="res://.godot/imported/regolith-spikes.png-83ee139bfc084ecafd35cc9804eadb94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world_map/tile_system/resource_tile_set/special_tiles/spike/assets/regolith_spikes.png"
-dest_files=["res://.godot/imported/regolith_spikes.png-df20ff5d4236532b4d8544edb7622e96.ctex"]
+source_file="res://world_map/tile_system/resource_tile_set/special_tiles/spike/assets/regolith-spikes.png"
+dest_files=["res://.godot/imported/regolith-spikes.png-83ee139bfc084ecafd35cc9804eadb94.ctex"]
 
 [params]
 
