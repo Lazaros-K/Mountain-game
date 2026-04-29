@@ -1,6 +1,10 @@
 class_name MapGenerator
 extends Node
 
+signal chunk_loaded(current: int)
+signal total_rooms(total:int)
+signal map_fully_generated()
+
 # For the first instantiated stuff
 const POOL_STORAGE_POS: Vector2 = Vector2(-10000, -10000)
 
@@ -35,16 +39,23 @@ func _ready() -> void:
 	seed(level_seed)
 	
 	# This part causes the lag when starting the game
-	initialize_pool()
+	await initialize_pool()
 	
 	for i: int in range(chunks_ahead + 1):
 		generate_and_append_fragment(i)
+		
+		await get_tree().process_frame
 	
 	update_chunk_window(0)
+	
+	map_fully_generated.emit()
 
 ## Instatiates all fragments, puts them far away and disables them
 func initialize_pool() -> void:
+	var total_items_to_load: int = (rooms.size() * pool_size_per_room) +1
+	var loaded_items: int = 1
 	
+	total_rooms.emit(total_items_to_load);
 	for room_scene: PackedScene in rooms:
 		room_pool[room_scene] = []
 		
@@ -55,6 +66,9 @@ func initialize_pool() -> void:
 			unload_fragment(new_fragment)
 			add_child(new_fragment)
 			room_pool[room_scene].append(new_fragment)
+			loaded_items+=1
+			chunk_loaded.emit(loaded_items)
+			await get_tree().process_frame
 
 func update_chunk_window(current_player_index: int) -> void:
 	var start_index: int = max(0, current_player_index - chunks_behind)

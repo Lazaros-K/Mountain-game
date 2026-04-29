@@ -44,7 +44,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xqlja")
-starting_scene = "res://user_interface/test_scene/test_level.tscn"
+starting_scene = "uid://djn3e2i1hj1f6"
 
 [node name="BCKGRND" type="Panel" parent="." unique_id=1495096156]
 layout_mode = 1

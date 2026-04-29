@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://djn3e2i1hj1f6"]
 
-[ext_resource type="Script" uid="uid://kkby3fw218b1" path="res://world_map/tests/test_level_controller.gd" id="1_vsyy8"]
-[ext_resource type="Script" uid="uid://dwkfuqcdddpuk" path="res://world_map/level_system/level_generation/MapGenerator.gd" id="2_2lj4u"]
+[ext_resource type="Script" uid="uid://kkby3fw218b1" path="res://world_map/level_controller.gd" id="1_vsyy8"]
+[ext_resource type="Script" uid="uid://bpnio7f13b1a7" path="res://world_map/level_system/level_generation/MapGenerator.gd" id="2_2lj4u"]
+[ext_resource type="PackedScene" uid="uid://gplvvfm2g21" path="res://world_map/map_fragmentation/map_fragments/start_area.tscn" id="2_iqpys"]
 [ext_resource type="PackedScene" uid="uid://db0p1cksthptd" path="res://world_map/map_fragmentation/map_fragments/snow1.tscn" id="3_nb1lg"]
 [ext_resource type="PackedScene" uid="uid://1bo5uyadwikm" path="res://user_interface/menus/pause_menu/pause_menu.tscn" id="4_l4uq5"]
 [ext_resource type="PackedScene" uid="uid://bjswl1om24gp" path="res://world_map/map_fragmentation/map_fragments/snow2.tscn" id="4_mlvgf"]
 [ext_resource type="PackedScene" uid="uid://p4uoycqrks1u" path="res://characters/test_character_2/charcter.tscn" id="5_rrmoa"]
+[ext_resource type="PackedScene" uid="uid://bovsbn3t2a5a4" path="res://world_map/map_fragmentation/map_fragments/stone1.tscn" id="5_yhk31"]
+[ext_resource type="PackedScene" uid="uid://co5gr4dauhcrv" path="res://world_map/map_fragmentation/map_fragments/stone2.tscn" id="6_iqpys"]
 [ext_resource type="AudioStream" uid="uid://cu2gobt78ko2b" path="res://user_interface/assets/Fantasy Choir 1.wav" id="6_wr86y"]
 [ext_resource type="AudioStream" uid="uid://da6p5dwh47d2b" path="res://user_interface/assets/DST-TowerDefenseTheme.mp3" id="8_bt565"]
 [ext_resource type="PackedScene" uid="uid://uhuavujbvdkq" path="res://user_interface/gui/player_level_gui/player_gui.tscn" id="9_bt565"]
@@ -13,18 +16,17 @@
 [node name="TestLevel" type="Node2D" unique_id=1529079746]
 script = ExtResource("1_vsyy8")
 
+[node name="start" parent="." unique_id=2053287255 instance=ExtResource("2_iqpys")]
+position = Vector2(-642, 139)
+
 [node name="MapGenerator" type="Node2D" parent="." unique_id=1589187120]
 position = Vector2(336, -48)
 script = ExtResource("2_2lj4u")
-fragments = Array[PackedScene]([ExtResource("3_nb1lg"), ExtResource("4_mlvgf")])
+rooms = Array[PackedScene]([ExtResource("3_nb1lg"), ExtResource("4_mlvgf"), ExtResource("5_yhk31"), ExtResource("6_iqpys")])
 use_custom_seed = true
-metadata/_custom_type_script = "uid://dwkfuqcdddpuk"
-
-[node name="snow1" parent="." unique_id=2053287255 instance=ExtResource("3_nb1lg")]
 
 [node name="test_character" parent="." unique_id=109764833 instance=ExtResource("5_rrmoa")]
-position = Vector2(25, -68)
-fly = true
+position = Vector2(-346, -18)
 
 [node name="Camera2D" type="Camera2D" parent="test_character" unique_id=1065869612]
 
