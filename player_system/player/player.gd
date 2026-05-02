@@ -44,9 +44,18 @@ signal floor_tile_changed(tile_data: SolidTileData)
 signal wall_tile_changed(wall_data: SolidTileData)
 
 @export var current_map_fragment: TileMapManager
+
+# World-space position the player teleports to after a spike or void death.
+# Set this in the Inspector; forwarded to Health in _ready().
+@export var respawn_position: Vector2 = Vector2.ZERO
+
 @onready var grab_point_left: Marker2D = $grab_point_left
 @onready var grab_point_right: Marker2D = $grab_point_right
 @onready var feet_point: Marker2D = $feet_point
+
+# Health component — handles HP, hearts, invincibility, fall damage and respawn.
+# Must be a child node named "Health" inside player.tscn (attach health.gd).
+@onready var health: PlayerHealth = $PlayerHealth
 
 #cmd is a filled playercommand describing what the player wants
 func _ready() -> void:
@@ -55,6 +64,10 @@ func _ready() -> void:
 	print("feet_point: ", feet_point)
 	print("Left Grab Point: ", grab_point_left)
 	print("Right Grab Point: ", grab_point_right)
+
+	# Pass the exported respawn position to the Health component so it knows
+	# where to teleport the player after a spike or void death.
+	health.set_respawn_position(respawn_position)
 func _get_wall_sample_pos() -> Vector2:
 	return global_position + Vector2(wall_side * WALL_SAMPLE_X_OFFSET, 0.0)
 	
@@ -62,9 +75,6 @@ func _get_wall_sample_pos() -> Vector2:
 # Now samples the actual tile instead of always returning 100.0
 func get_wall_surface_grip() -> float:
 	var tile_data := _get_wall_tile_data()
-	print("wall sample pos: ", global_position + Vector2(wall_side * WALL_SAMPLE_X_OFFSET, 0.0),
-		  " | tile found: ", tile_data != null,
-		  " | anchoring: ", tile_data.wall_anchoring if tile_data else "n/a")
 	if not tile_data:
 		return 100.0
 	return tile_data.wall_anchoring
@@ -224,7 +234,6 @@ func read_floor_tile() -> void:
 	if not tile_data:
 		return
 	tile_friction_scale = tile_data.friction / 100.0
-	print("floor friction scale: ", tile_friction_scale)
 	floor_tile_changed.emit(tile_data)
 
 # Now also feeds the anchoring value into the grip handler each frame
@@ -236,4 +245,12 @@ func read_wall_tile() -> void:
 	wall_tile_changed.emit(tile_data)
 
 func receive_hit_payload(payload: HitPayload) -> void:
-	print("damage received: ", payload.damage, " from: ", payload.id)
+	# StaticHitBoxes are environmental hazards (spikes).
+	# Always deal exactly 1 heart of damage then respawn.
+	if payload.actor is StaticHitBox:
+		health.damage(1, payload.id)
+		return
+
+	# AttackHitBoxes come from enemies; damage value is set on the Attack object.
+	# No forced respawn — the player stays in place after taking enemy damage.
+	health.damage(payload.damage, payload.id)

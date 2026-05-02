@@ -51,6 +51,6 @@ metadata/_custom_type_script = "uid://o4t8kgxp817r"
 position = Vector2(17.5, 5)
 shape = SubResource("RectangleShape2D_epa1b")
 
-[node name="PlayerHealth" type="Node2D" parent="." unique_id=1666263499]
+[node name="Health" type="Node2D" parent="." unique_id=1377640532]
 script = ExtResource("6_48nxi")
-metadata/_custom_type_script = "uid://c5rxmykxhvwop"
+metadata/_custom_type_script = "uid://c3a5brb6y7m16"
