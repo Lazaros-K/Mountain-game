@@ -1,4 +1,9 @@
 extends Node
-# Global var score, need it to carry value of score to end screen.
+class_name GlobalScoreNode
 
-var score: int = 0
+var current_run_score: int = 0
+var high_score: int = 0
+
+func update_high_score() -> void:
+	if current_run_score > high_score:
+		high_score = current_run_score

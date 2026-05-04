@@ -29,6 +29,7 @@ use_custom_seed = true
 position = Vector2(-346, -18)
 
 [node name="Camera2D" type="Camera2D" parent="test_character" unique_id=1065869612]
+zoom = Vector2(2, 2)
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=486604446]
 stream = ExtResource("8_bt565")

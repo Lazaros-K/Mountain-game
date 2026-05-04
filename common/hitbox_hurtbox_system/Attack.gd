@@ -15,6 +15,7 @@ func _init(_id: String, _attack_shape: Shape2D, _damage: int, _attack_duration: 
 	attack_shape = _attack_shape
 
 func info() -> void:
+	print_stack()
 	print("Attack id: " + id)
 	print("Attack damage: %d" % damage)
 	if one_time:

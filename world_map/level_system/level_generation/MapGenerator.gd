@@ -13,7 +13,6 @@ const POOL_STORAGE_POS: Vector2 = Vector2(-10000, -10000)
 @export var chunks_ahead: int = 1
 @export var chunks_behind: int = 1
 
-@export var use_custom_seed: bool = false
 @export var level_seed: int = 80085
 
 
@@ -34,9 +33,11 @@ func _ready() -> void:
 		push_error("Map didn't generate. Place fragments first on MapGenerator")
 		return
 	
-	if not use_custom_seed:
+	if SeedManager.use_custom_seed:
+		level_seed = SeedManager.custom_seed
+	else:
 		level_seed = randi()
-	seed(level_seed)
+	
 	
 	# This part causes the lag when starting the game
 	await initialize_pool()

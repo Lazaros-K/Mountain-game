@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalScore="*uid://dm7u4aw3m6uqa"
+SeedManager="*uid://bl10pkkscd0aa"
 
 [debug]
 

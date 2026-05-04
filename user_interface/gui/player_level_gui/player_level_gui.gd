@@ -1,3 +1,4 @@
+class_name gui
 extends Control
 
 # Referencing the player character so we can access player position on y axis.
@@ -22,12 +23,14 @@ func _process(_delta: float) -> void:
 	# We update the score ui here.
 	score_label.update_score(score)
 	# Pass the score in the global var so we can access it in the game over screen.
-	GlobalScore.score = meters
+	(GlobalScore as GlobalScoreNode).current_run_score = meters
 
 # Goes to "game over" screen when character dies. Press "K" to test.
 func die() -> void:
-	get_tree().change_scene_to_file(uids.END_SCREEN)
-
+	(GlobalScore as GlobalScoreNode).current_run_score = meters 
+	(GlobalScore as GlobalScoreNode).update_high_score()
+	get_tree().call_deferred("change_scene_to_file", uids.END_SCREEN)
+	
 # Simple heart bar. Press "T" to take damage, "H" to heal.
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):

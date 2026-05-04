@@ -102,11 +102,11 @@ script = ExtResource("1_uad7m")
 
 [node name="Options" type="Panel" parent="." unique_id=1427330009]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.5972222
 offset_left = -301.0
 offset_top = -155.0
 offset_right = 301.0
@@ -124,9 +124,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -298.0
-offset_top = -189.0
+offset_top = -212.5
 offset_right = 298.0
-offset_bottom = -96.0
+offset_bottom = -119.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_esvj4")
@@ -169,9 +169,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -246.0
-offset_top = -103.0
+offset_top = -124.5
 offset_right = 223.0
-offset_bottom = 74.5
+offset_bottom = 53.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 5
@@ -244,6 +244,26 @@ step = 0.05
 value = 1.0
 script = ExtResource("5_065b5")
 audio_bus_name = "SFX"
+
+[node name="SeedContainer" type="HBoxContainer" parent="Options/VBoxContainer" unique_id=1332471910]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/VBoxContainer/SeedContainer" unique_id=2126444392]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_esvj4")
+theme_override_font_sizes/font_size = 60
+text = "Custom Seed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Options/VBoxContainer/SeedContainer" unique_id=1447008407]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_esvj4")
+theme_override_font_sizes/font_size = 45
+alignment = 3
+max_length = 10
+emoji_menu_enabled = false
 
 [connection signal="pressed" from="Options/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="toggled" from="Options/VBoxContainer/ScreenModeB" to="Options/VBoxContainer/ScreenModeB" method="_on_toggled"]

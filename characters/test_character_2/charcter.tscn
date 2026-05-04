@@ -32,8 +32,13 @@ metadata/_custom_type_script = "uid://o4t8kgxp817r"
 shape = SubResource("RectangleShape2D_6kk5w")
 debug_color = Color(0.25334, 0.635027, 0, 0.42)
 
-[node name="MapDetectionPoint" type="Marker2D" parent="." unique_id=862729146]
-position = Vector2(13, -9)
+[node name="LeftDetectionPoint" type="Marker2D" parent="." unique_id=862729146]
+position = Vector2(-13, -3)
+script = ExtResource("4_1aeb4")
+metadata/_custom_type_script = "uid://dnd5nenrc7gp6"
+
+[node name="RightDetectionPoint" type="Marker2D" parent="." unique_id=319805952]
+position = Vector2(13, -3)
 script = ExtResource("4_1aeb4")
 metadata/_custom_type_script = "uid://dnd5nenrc7gp6"
 
@@ -41,3 +46,5 @@ metadata/_custom_type_script = "uid://dnd5nenrc7gp6"
 position = Vector2(0, 13)
 script = ExtResource("5_fr4xc")
 metadata/_custom_type_script = "uid://cmt5ubif6khm1"
+
+[node name="Timer" type="Timer" parent="." unique_id=708608738]
