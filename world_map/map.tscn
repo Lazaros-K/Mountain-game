@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://1bo5uyadwikm" path="res://user_interface/menus/pause_menu/pause_menu.tscn" id="10_odsqf"]
 [ext_resource type="PackedScene" uid="uid://s0x0ow7j3n66" path="res://common/background/paralax_background.tscn" id="11_odsqf"]
 [ext_resource type="PackedScene" uid="uid://uhuavujbvdkq" path="res://user_interface/gui/player_level_gui/player_gui.tscn" id="11_pkval"]
+[ext_resource type="AudioStream" uid="uid://45sigxm7h0xj" path="res://user_interface/assets/Level Reset.mp3" id="12_pkval"]
 
 [node name="TestLevel" type="Node2D" unique_id=1529079746]
 script = ExtResource("1_bdt0x")
@@ -19,7 +20,6 @@ script = ExtResource("1_bdt0x")
 position = Vector2(-3, -14)
 script = ExtResource("2_odsqf")
 rooms = Array[PackedScene]([ExtResource("3_pkval"), ExtResource("4_i8in2"), ExtResource("5_o06kw"), ExtResource("6_r6eo7")])
-use_custom_seed = true
 
 [node name="start" parent="." unique_id=2053287255 instance=ExtResource("7_qme1k")]
 position = Vector2(-947, 162)
@@ -39,3 +39,8 @@ position_smoothing_speed = 15.0
 
 [node name="Player_GUI" parent="." unique_id=1831220666 node_paths=PackedStringArray("player_character") instance=ExtResource("11_pkval")]
 player_character = NodePath("../test_character")
+
+[node name="Mousikoula" type="AudioStreamPlayer" parent="." unique_id=2020684210]
+stream = ExtResource("12_pkval")
+autoplay = true
+bus = &"Music"

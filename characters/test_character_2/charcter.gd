@@ -26,7 +26,7 @@ var is_invincible: bool = false
 var current_health: int
 var current_friction: float = 100.0 
 var current_wall_anchoring: float = 0.0 
-
+var counter:int =0
 var current_fragment_index: int = -1
 
 func _ready() -> void:
@@ -38,15 +38,28 @@ func c_setup_character(mg: MapGenerator, start_fragment: MapFragment) -> void :
 	base_point.connect("map_fragment_changed",mg._on_character_map_fragment_changed)
 
 func _physics_process(delta: float) -> void :
-	
-	if not is_on_floor():
-		current_friction = 100.0
-		
 	var direction: float = Input.get_axis("left", "right")
-	
 	if direction != 0:
 		#flips the sprite for when we add sprites
-		($Sprite2D as Sprite2D).flip_h = direction < 0 as bool
+		$AnimatedSprite2D.flip_h = direction < 0 as bool
+		
+	if not is_on_floor():
+		current_friction = 100.0
+		$AnimatedSprite2D.play("jump")
+	else:
+		if direction != 0:
+			$AnimatedSprite2D.play("walk")
+			counter=0
+		else:
+			if (counter<4):
+				$AnimatedSprite2D.play("stop")
+				if $AnimatedSprite2D.frame_changed:
+					counter+=1
+			else:
+				$AnimatedSprite2D.play("default")
+	
+	
+	
 	
 	if fly:
 		movement_fly()
@@ -76,9 +89,9 @@ func get_on_floor_data() -> void :
 
 func get_on_wall_data() -> void :
 	var tile_data: TerrainTileData
-	
+	$AnimatedSprite2D.play("wall")
 	# Check where the sprite is looking
-	var is_facing_left: bool = ($Sprite2D as Sprite2D).flip_h
+	var is_facing_left: bool = $AnimatedSprite2D.flip_h
 	
 	# Use the left point
 	if is_facing_left:
